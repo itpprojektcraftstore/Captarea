@@ -1,0 +1,76 @@
+{
+  "Highscore" :
+  {
+    "Platz 1" : 
+    {
+      "Name" : "player1"
+    },
+    "Platz 2" : 
+    {
+      "Name" : "player1"
+    },
+    "Platz 3" : 
+    {
+      "Name" : "player1"
+    },
+    "Platz 4" : 
+    {
+      "Name" : "player1"
+    },
+    "Platz 5" : 
+    {
+      "Name" : "player1"
+    }
+  },
+
+  "Map" :
+  {
+
+    "x0y0": 
+    {
+      "color" : "white"
+    },
+    "x1y0": 
+    {
+      "color" : "white"
+    },
+    "x2y0": 
+    {
+      "color" : "white"
+    },
+    "x3y0": 
+    {
+      "color" : "white"
+    },
+    "x0y1": 
+    {
+      "color" : "white"
+    },
+    "x1y1": 
+    {
+      "color" : "white"
+    },
+    "x2y1": 
+    {
+      "color" : "white"
+    },
+    "x3y1": 
+    {
+      "color" : "white"
+    }
+  },
+
+  "Player" :
+  {
+    "player 1" :
+    {
+      "x" : 0,
+      "y" : 0
+    },
+    "player 2" :
+    {
+      "x" : 3,
+      "y" : 0
+    }
+  }
+}
