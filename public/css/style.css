@@ -9,3 +9,20 @@
 .move_button {
     width: 70px;
 }
+
+h1{
+    text-align: center;
+}
+
+.center{
+    display: block;
+    margin: 0 auto;
+}
+
+#logo{
+    padding: 1em;
+}
+
+#login{
+    margin-top: 5em;
+}
