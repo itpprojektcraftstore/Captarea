@@ -5,3 +5,7 @@
     margin: 2px 2px 2px 0px;
     float: left;
 }
+
+.move_button {
+    width: 70px;
+}

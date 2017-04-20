@@ -11,8 +11,11 @@ function getColor (x, y) {
     });
 }
 
-for (var i = 0; i < 4; i++) {
-    for (var j = 0; j < 2; j++) {
-        setColor(i,j,"white");
-    }
-}
+setColor(0,0,"red");
+setColor(1,0,"white");
+setColor(2,0,"white");
+setColor(3,0,"green");
+setColor(0,1,"white");
+setColor(1,1,"white");
+setColor(2,1,"white");
+setColor(3,1,"white");

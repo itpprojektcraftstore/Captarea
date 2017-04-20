@@ -69,3 +69,8 @@ function setPlayerPosition_y(player, new_y) {
         y: new_y
     });
 }
+
+setPlayerPosition_x(1, 0);
+setPlayerPosition_y(1, 0);
+setPlayerPosition_x(2, 3);
+setPlayerPosition_y(2, 0);
