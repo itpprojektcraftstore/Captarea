@@ -1,3 +1,7 @@
+h1{
+    text-align: center;
+}
+
 .field {
     width: 20px;
     height: 20px;
@@ -8,10 +12,6 @@
 
 .move_button {
     width: 70px;
-}
-
-h1{
-    text-align: center;
 }
 
 .center{
@@ -25,4 +25,8 @@ h1{
 
 #login{
     margin-top: 5em;
+}
+
+#input_username{
+    width: 15em;
 }
