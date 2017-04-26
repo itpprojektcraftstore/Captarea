@@ -62,11 +62,19 @@ function setPlayerPosition_x(player, new_x) {
     firebase.database().ref('Player/player '+player).update({
         x: new_x
     });
+    firebase.database().ref('Player/player '+player).once('value').then(function(snapshot) {
+        var y = snapshot.val().y;
+        document.getElementById('x'+new_x+'y'+y).innerHTML=player;
+    });
 }
 
 function setPlayerPosition_y(player, new_y) {
     firebase.database().ref('Player/player '+player).update({
         y: new_y
+    });
+    firebase.database().ref('Player/player '+player).once('value').then(function(snapshot) {
+        var x = snapshot.val().x;
+        document.getElementById('x'+x+'y'+new_y).innerHTML=player;
     });
 }
 
