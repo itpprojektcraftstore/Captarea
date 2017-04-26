@@ -1,8 +1,5 @@
-<<<<<<< HEAD
-=======
 var timestamp_start = new Date();
 
->>>>>>> d8211508eb4d9c3659f7b66312981de3c611c8a2
 function move (player, direction) {
 
     var player_color;
