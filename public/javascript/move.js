@@ -20,7 +20,7 @@ function move (player, direction) {
     switch (direction) {
         case 'up':
             getPlayerPosition(player).then(function(pos){
-                if ((pos.y > 0) && checkColission(direction, pos.x, pos.y)) {
+                if ((pos.y > 0) && checkCollision(direction, pos.x, pos.y)) {
                     delPlayerIndicator(pos.x, pos.y);
                     pos.y--;
                     setPlayerPosition_y(player, pos.y);
@@ -31,7 +31,7 @@ function move (player, direction) {
 
         case 'down':
                 getPlayerPosition(player).then(function(pos){
-                if ((pos.y < 9) && checkColission(direction, pos.x, pos.y)) {
+                if ((pos.y < 9) && checkCollision(direction, pos.x, pos.y)) {
                     delPlayerIndicator(pos.x, pos.y);
                     pos.y++;
                     setPlayerPosition_y(player, pos.y);
@@ -42,7 +42,7 @@ function move (player, direction) {
 
         case 'left':
             getPlayerPosition(player).then(function(pos){
-                if ((pos.x > 0) && checkColission(direction, pos.x, pos.y)) {
+                if ((pos.x > 0) && checkCollision(direction, pos.x, pos.y)) {
                     delPlayerIndicator(pos.x, pos.y);
                     pos.x--;
                     setPlayerPosition_x(player, pos.x);
@@ -53,7 +53,7 @@ function move (player, direction) {
 
         case 'right':
             getPlayerPosition(player).then(function(pos){
-                if ((pos.x < 9) && checkColission(direction, pos.x, pos.y)) {
+                if ((pos.x < 9) && checkCollision(direction, pos.x, pos.y)) {
                     delPlayerIndicator(pos.x, pos.y);
                     pos.x++;
                     setPlayerPosition_x(player, pos.x);
@@ -64,7 +64,7 @@ function move (player, direction) {
     }
 }
 
-function checkColission(direction, x, y) {
+function checkCollision(direction, x, y) {
     if (direction == "up") { --y; }
     else if (direction == "down") { ++y; }
     else if (direction == "left") { --x; }
