@@ -20,7 +20,7 @@ function move (player, direction) {
 
         case 'down':
                 getPlayerPosition(player).then(function(pos){
-                if (pos.y < 1) {
+                if (pos.y < 9) {
                     delPlayerIndicator(pos.x, pos.y);
                     pos.y++;
                     setPlayerPosition_y(player, pos.y);
@@ -42,7 +42,7 @@ function move (player, direction) {
 
         case 'right':
             getPlayerPosition(player).then(function(pos){
-                if (pos.x < 3) {
+                if (pos.x < 9) {
                     delPlayerIndicator(pos.x, pos.y);
                     pos.x++;
                     setPlayerPosition_x(player, pos.x);
@@ -66,7 +66,7 @@ document.onkeydown = function(event) {
 
 function checkTime() {
     var timestamp_end = new Date();
-    if ((timestamp_end - timestamp_start) > 1000) {
+    if ((timestamp_end - timestamp_start) > 700) {
         timestamp_start = new Date();
         return true;
     }
@@ -115,5 +115,5 @@ function delPlayerIndicator(x, y){
 
 setPlayerPosition_x(1, 0);
 setPlayerPosition_y(1, 0);
-setPlayerPosition_x(2, 3);
+setPlayerPosition_x(2, 9);
 setPlayerPosition_y(2, 0);
