@@ -1,5 +1,16 @@
 var timestamp_start = new Date();
 
+document.onkeydown = function(event) {
+    if (event.keyCode == 65) { if(checkTime()) { move(1,'left'); } }
+    if (event.keyCode == 87) { if(checkTime()) { move(1,'up'); } }
+    if (event.keyCode == 68) { if(checkTime()) { move(1,'right'); } }
+    if (event.keyCode == 83) { if(checkTime()) { move(1,'down'); } }
+    if (event.keyCode == 37) { if(checkTime()) { move(2,'left'); } }
+    if (event.keyCode == 38) { if(checkTime()) { move(2,'up'); } }
+    if (event.keyCode == 39) { if(checkTime()) { move(2,'right'); } }
+    if (event.keyCode == 40) { if(checkTime()) { move(2,'down'); } }
+}
+
 function move (player, direction) {
 
     var player_color;
@@ -9,7 +20,7 @@ function move (player, direction) {
     switch (direction) {
         case 'up':
             getPlayerPosition(player).then(function(pos){
-                if (pos.y > 0) {
+                if ((pos.y > 0) && checkColission(direction, pos.x, pos.y)) {
                     delPlayerIndicator(pos.x, pos.y);
                     pos.y--;
                     setPlayerPosition_y(player, pos.y);
@@ -20,7 +31,7 @@ function move (player, direction) {
 
         case 'down':
                 getPlayerPosition(player).then(function(pos){
-                if (pos.y < 9) {
+                if ((pos.y < 9) && checkColission(direction, pos.x, pos.y)) {
                     delPlayerIndicator(pos.x, pos.y);
                     pos.y++;
                     setPlayerPosition_y(player, pos.y);
@@ -31,7 +42,7 @@ function move (player, direction) {
 
         case 'left':
             getPlayerPosition(player).then(function(pos){
-                if (pos.x > 0) {
+                if ((pos.x > 0) && checkColission(direction, pos.x, pos.y)) {
                     delPlayerIndicator(pos.x, pos.y);
                     pos.x--;
                     setPlayerPosition_x(player, pos.x);
@@ -42,7 +53,7 @@ function move (player, direction) {
 
         case 'right':
             getPlayerPosition(player).then(function(pos){
-                if (pos.x < 9) {
+                if ((pos.x < 9) && checkColission(direction, pos.x, pos.y)) {
                     delPlayerIndicator(pos.x, pos.y);
                     pos.x++;
                     setPlayerPosition_x(player, pos.x);
@@ -53,15 +64,17 @@ function move (player, direction) {
     }
 }
 
-document.onkeydown = function(event) {
-    if (event.keyCode == 65) { if(checkTime()) { move(1,'left'); } }
-    if (event.keyCode == 87) { if(checkTime()) { move(1,'up'); } }
-    if (event.keyCode == 68) { if(checkTime()) { move(1,'right'); } }
-    if (event.keyCode == 83) { if(checkTime()) { move(1,'down'); } }
-    if (event.keyCode == 37) { if(checkTime()) { move(2,'left'); } }
-    if (event.keyCode == 38) { if(checkTime()) { move(2,'up'); } }
-    if (event.keyCode == 39) { if(checkTime()) { move(2,'right'); } }
-    if (event.keyCode == 40) { if(checkTime()) { move(2,'down'); } }
+function checkColission(direction, x, y) {
+    if (direction == "up") { --y; }
+    else if (direction == "down") { ++y; }
+    else if (direction == "left") { --x; }
+    else if (direction == "right") { ++x; }
+    if (document.getElementById('x'+x+'y'+y).innerHTML == "") {
+        return true;
+    }
+    else {
+        return false;
+    }
 }
 
 function checkTime() {
