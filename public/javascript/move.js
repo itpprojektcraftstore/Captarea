@@ -1,3 +1,8 @@
+<<<<<<< HEAD
+=======
+var timestamp_start = new Date();
+
+>>>>>>> d8211508eb4d9c3659f7b66312981de3c611c8a2
 function move (player, direction) {
 
     var player_color;
@@ -52,14 +57,27 @@ function move (player, direction) {
 }
 
 document.onkeydown = function(event) {
-    if (event.keyCode == 65) { move(1,'left'); }
-    if (event.keyCode == 87) { move(1,'up'); }
-    if (event.keyCode == 68) { move(1,'right'); }
-    if (event.keyCode == 83) { move(1,'down'); }
-    if (event.keyCode == 37) { move(2,'left'); }
-    if (event.keyCode == 38) { move(2,'up'); }
-    if (event.keyCode == 39) { move(2,'right'); }
-    if (event.keyCode == 40) { move(2,'down'); }
+    checkTime();
+    if (event.keyCode == 65) { if(checkTime) { move(1,'left'); } }
+    if (event.keyCode == 87) { if(checkTime) { move(1,'up'); } }
+    if (event.keyCode == 68) { if(checkTime) { move(1,'right'); } }
+    if (event.keyCode == 83) { if(checkTime) { move(1,'down'); } }
+    if (event.keyCode == 37) { if(checkTime) { move(2,'left'); } }
+    if (event.keyCode == 38) { if(checkTime) { move(2,'up'); } }
+    if (event.keyCode == 39) { if(checkTime) { move(2,'right'); } }
+    if (event.keyCode == 40) { if(checkTime) { move(2,'down'); } }
+}
+
+function checkTime() {
+    var timestamp_end = new Date();
+    console.log(timestamp_end - timestamp_start);
+    if ((timestamp_end - timestamp_start) > 10000) {
+        timestamp_start = new Date();
+        return true;
+    }
+    else {
+        false;
+    }
 }
 
 function getPlayerPosition (player) {
