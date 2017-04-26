@@ -1,4 +1,6 @@
 
+
+
 function move (player, direction) {
 
     var player_color;
@@ -6,7 +8,7 @@ function move (player, direction) {
     else if (player == 2) { player_color = "green"; }
 
     switch (direction) {
-        case 'top':
+        case 'up':
             getPlayerPosition(player).then(function(pos){
                 if (pos.y > 0) {
                     pos.y--;
@@ -16,7 +18,7 @@ function move (player, direction) {
             });
             break;
 
-        case 'bot':
+        case 'down':
                 getPlayerPosition(player).then(function(pos){
                 if (pos.y < 1) {
                     pos.y++;
@@ -46,6 +48,17 @@ function move (player, direction) {
             });
             break;
     }
+}
+
+document.onkeydown = function(event) {
+    if (event.keyCode == 65) { move(1,'left'); }
+    if (event.keyCode == 87) { move(1,'up'); }
+    if (event.keyCode == 68) { move(1,'right'); }
+    if (event.keyCode == 83) { move(1,'down'); }
+    if (event.keyCode == 37) { move(2,'left'); }
+    if (event.keyCode == 38) { move(2,'up'); }
+    if (event.keyCode == 39) { move(2,'right'); }
+    if (event.keyCode == 40) { move(2,'down'); }
 }
 
 function getPlayerPosition (player) {
