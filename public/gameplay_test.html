@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Captarea</title>
+
+    <!-- update the version number as needed -->
+    <script defer src="/__/firebase/3.8.0/firebase-app.js"></script>
+    <!-- include only the Firebase features as you need -->
+    <script defer src="/__/firebase/3.8.0/firebase-auth.js"></script>
+    <script defer src="/__/firebase/3.8.0/firebase-database.js"></script>
+    <script defer src="/__/firebase/3.8.0/firebase-messaging.js"></script>
+    <script defer src="/__/firebase/3.8.0/firebase-storage.js"></script>
+    <!-- initialize the SDK after all desired features are loaded -->
+    <script defer src="/__/firebase/init.js"></script>
+
+    <script src="https://www.gstatic.com/firebasejs/3.8.0/firebase.js"></script>
+
+    <script src="http://code.jquery.com/jquery-3.1.1.min.js"></script>
+
+    <script src="javascript/firebase.js"></script>
+    <script src="javascript/database.js"></script>
+    <script src="javascript/move.js"></script>
+    <script src="javascript/listen.js"></script>
+
+    <link rel="stylesheet" href="css/style.css">
+  </head>
+  <body>
+    
+    <input type="button" id="bt_top_1" class="move_button" onclick="move(1,'top')" value="TOP_1"/>
+    <input type="button" id="bt_top_2" class="move_button" onclick="move(2,'top')" value="TOP_2"/><br>
+    <input type="button" id="bt_bot_1" class="move_button" onclick="move(1,'bot')" value="BOT_1"/>
+    <input type="button" id="bt_bot_2" class="move_button" onclick="move(2,'bot')" value="BOT_2"/><br>
+    <input type="button" id="bt_left_1" class="move_button" onclick="move(1,'left')" value="LEFT_1"/>
+    <input type="button" id="bt_left_2" class="move_button" onclick="move(2,'left')" value="LEFT_2"/><br>
+    <input type="button" id="bt_right_1" class="move_button" onclick="move(1,'right')" value="RIGHT_1"/>
+    <input type="button" id="bt_right_2" class="move_button" onclick="move(2,'right')" value="RIGHT_2"/><br><br>
+    
+    <p id="x0y0" class="field"></p>
+    <p id="x1y0" class="field"></p>
+    <p id="x2y0" class="field"></p>
+    <p id="x3y0" class="field"></p><br><br>
+    <p id="x0y1" class="field"></p>
+    <p id="x1y1" class="field"></p>
+    <p id="x2y1" class="field"></p>
+    <p id="x3y1" class="field"></p>
+
+  </body>
+</html>
