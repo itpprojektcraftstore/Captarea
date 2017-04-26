@@ -23,6 +23,7 @@
     <script src="javascript/database.js"></script>
     <script src="javascript/move.js"></script>
     <script src="javascript/listen.js"></script>
+    <script src="javascript/drawBoard.js"></script>
 
     <link rel="stylesheet" href="css/style.css">
   </head>
@@ -37,14 +38,9 @@
     <input type="button" id="bt_right_1" class="move_button" onclick="move(1,'right')" value="RIGHT_1"/>
     <input type="button" id="bt_right_2" class="move_button" onclick="move(2,'right')" value="RIGHT_2"/><br><br>
     
-    <p id="x0y0" class="field"></p>
-    <p id="x1y0" class="field"></p>
-    <p id="x2y0" class="field"></p>
-    <p id="x3y0" class="field"></p><br><br>
-    <p id="x0y1" class="field"></p>
-    <p id="x1y1" class="field"></p>
-    <p id="x2y1" class="field"></p>
-    <p id="x3y1" class="field"></p>
+    <div id="board" class="center">
+
+    </div>
 
   </body>
 </html>
