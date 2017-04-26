@@ -1,6 +1,3 @@
-
-
-
 function move (player, direction) {
 
     var player_color;
@@ -11,6 +8,7 @@ function move (player, direction) {
         case 'up':
             getPlayerPosition(player).then(function(pos){
                 if (pos.y > 0) {
+                    delPlayerIndicator(pos.x, pos.y);
                     pos.y--;
                     setPlayerPosition_y(player, pos.y);
                     setColor(pos.x, pos.y, player_color);
@@ -21,6 +19,7 @@ function move (player, direction) {
         case 'down':
                 getPlayerPosition(player).then(function(pos){
                 if (pos.y < 1) {
+                    delPlayerIndicator(pos.x, pos.y);
                     pos.y++;
                     setPlayerPosition_y(player, pos.y);
                     setColor(pos.x, pos.y, player_color);
@@ -31,6 +30,7 @@ function move (player, direction) {
         case 'left':
             getPlayerPosition(player).then(function(pos){
                 if (pos.x > 0) {
+                    delPlayerIndicator(pos.x, pos.y);
                     pos.x--;
                     setPlayerPosition_x(player, pos.x);
                     setColor(pos.x, pos.y, player_color);
@@ -41,6 +41,7 @@ function move (player, direction) {
         case 'right':
             getPlayerPosition(player).then(function(pos){
                 if (pos.x < 3) {
+                    delPlayerIndicator(pos.x, pos.y);
                     pos.x++;
                     setPlayerPosition_x(player, pos.x);
                     setColor(pos.x, pos.y, player_color);
@@ -75,9 +76,11 @@ function setPlayerPosition_x(player, new_x) {
     firebase.database().ref('Player/player '+player).update({
         x: new_x
     });
+    //Place player indicator
     firebase.database().ref('Player/player '+player).once('value').then(function(snapshot) {
+        var x = snapshot.val().x;
         var y = snapshot.val().y;
-        document.getElementById('x'+new_x+'y'+y).innerHTML=player;
+        document.getElementById('x'+x+'y'+y).innerHTML=player;
     });
 }
 
@@ -85,10 +88,16 @@ function setPlayerPosition_y(player, new_y) {
     firebase.database().ref('Player/player '+player).update({
         y: new_y
     });
+    //Place player indicator
     firebase.database().ref('Player/player '+player).once('value').then(function(snapshot) {
         var x = snapshot.val().x;
-        document.getElementById('x'+x+'y'+new_y).innerHTML=player;
+        var y = snapshot.val().y;
+        document.getElementById('x'+x+'y'+y).innerHTML=player;
     });
+}
+
+function delPlayerIndicator(x, y){
+    document.getElementById('x'+x+'y'+y).innerHTML="";
 }
 
 setPlayerPosition_x(1, 0);
