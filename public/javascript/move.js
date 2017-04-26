@@ -93,7 +93,7 @@ function setPlayerPosition_x(player, new_x) {
     firebase.database().ref('Player/player '+player).once('value').then(function(snapshot) {
         var x = snapshot.val().x;
         var y = snapshot.val().y;
-        document.getElementById('x'+x+'y'+y).innerHTML=player;
+        document.getElementById('x'+x+'y'+y).innerHTML="<img src=\"/img/player"+player+".png\">";
     });
 }
 
@@ -105,7 +105,7 @@ function setPlayerPosition_y(player, new_y) {
     firebase.database().ref('Player/player '+player).once('value').then(function(snapshot) {
         var x = snapshot.val().x;
         var y = snapshot.val().y;
-        document.getElementById('x'+x+'y'+y).innerHTML=player;
+        document.getElementById('x'+x+'y'+y).innerHTML="<img src=\"/img/player"+player+".png\">";
     });
 }
 
