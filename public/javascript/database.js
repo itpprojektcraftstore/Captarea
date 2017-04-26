@@ -11,11 +11,10 @@ function getColor (x, y) {
     });
 }
 
+for (var y = 0; y < 10; ++y) {
+    for (var x = 0; x < 10; ++x) {
+        setColor(x,y,"white");
+    }
+}
 setColor(0,0,"red");
-setColor(1,0,"white");
-setColor(2,0,"white");
-setColor(3,0,"green");
-setColor(0,1,"white");
-setColor(1,1,"white");
-setColor(2,1,"white");
-setColor(3,1,"white");
+setColor(9,0,"green");
