@@ -36,3 +36,8 @@ h1{
 #input_username{
     width: 15em;
 }
+
+.gamebrowse{
+    border-style: solid 1px black;
+    max-width: 600px;
+}
