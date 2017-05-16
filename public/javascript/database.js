@@ -2,13 +2,13 @@ var score1 = 0;
 var score2 = 0;
 
 function setColor (x, y, color) {
-    firebase.database().ref('Map/x'+x+'y'+y).update({
+    firebase.database().ref('Game '+game+'/Map/x'+x+'y'+y).update({
         color: color
     });
 }
 
 function getColor (x, y) {
-    return firebase.database().ref('Map/x'+x+'y'+y).once('value').then(function(snapshot) {
+    return firebase.database().ref('Game '+game+'/Map/x'+x+'y'+y).once('value').then(function(snapshot) {
         return snapshot.val().color;
     });
 }
@@ -36,20 +36,9 @@ function decScore(old_color) {
     }
 }
 
-for (var y = 0; y < 10; ++y) {
-    for (var x = 0; x < 10; ++x) {
-        setColor(x,y,"white");
-    }
-}
-setColor(0,0,"red");
-setColor(9,0,"green");
-
-//createGame();
-
 function createGame() {
-    console.log("HIER");
     var start_x, start_y;
-    players = 4;
+    players = 2;
     game = 1;
 
     // write player in database
@@ -78,4 +67,6 @@ function createGame() {
     firebase.database().ref('Game '+game+'/Ready').set({
         ready: false
     });
+
+    set_listen_var();
 }

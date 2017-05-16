@@ -89,7 +89,7 @@ function checkTime() {
 }
 
 function getPlayerPosition (player) {
-    return firebase.database().ref('Player/player '+player).once('value').then(function(snapshot) {
+    return firebase.database().ref('Game '+game+'/Player/player '+player).once('value').then(function(snapshot) {
         var position = {
             x : snapshot.val().x,
             y : snapshot.val().y
@@ -99,11 +99,11 @@ function getPlayerPosition (player) {
 }
 
 function setPlayerPosition_x(player, new_x) {
-    firebase.database().ref('Player/player '+player).update({
+    firebase.database().ref('Game '+game+'/Player/player '+player).update({
         x: new_x
     });
     //Place player indicator
-    firebase.database().ref('Player/player '+player).once('value').then(function(snapshot) {
+    firebase.database().ref('Game '+game+'/Player/player '+player).once('value').then(function(snapshot) {
         var x = snapshot.val().x;
         var y = snapshot.val().y;
         document.getElementById('x'+x+'y'+y).innerHTML="<img src=\"/img/player"+player+".gif\">";
@@ -111,11 +111,11 @@ function setPlayerPosition_x(player, new_x) {
 }
 
 function setPlayerPosition_y(player, new_y) {
-    firebase.database().ref('Player/player '+player).update({
+    firebase.database().ref('Game '+game+'/Player/player '+player).update({
         y: new_y
     });
     //Place player indicator
-    firebase.database().ref('Player/player '+player).once('value').then(function(snapshot) {
+    firebase.database().ref('Game '+game+'/Player/player '+player).once('value').then(function(snapshot) {
         var x = snapshot.val().x;
         var y = snapshot.val().y;
         document.getElementById('x'+x+'y'+y).innerHTML="<img src=\"/img/player"+player+".gif\">";
@@ -125,8 +125,3 @@ function setPlayerPosition_y(player, new_y) {
 function delPlayerIndicator(x, y){
     document.getElementById('x'+x+'y'+y).innerHTML="";
 }
-
-setPlayerPosition_x(1, 0);
-setPlayerPosition_y(1, 0);
-setPlayerPosition_x(2, 9);
-setPlayerPosition_y(2, 0);
