@@ -79,7 +79,7 @@ function checkCollision(direction, x, y) {
 
 function checkTime() {
     var timestamp_end = new Date();
-    if ((timestamp_end - timestamp_start) > 700) {
+    if ((timestamp_end - timestamp_start) > 500) {
         timestamp_start = new Date();
         return true;
     }
