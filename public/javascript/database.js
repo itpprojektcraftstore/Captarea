@@ -49,9 +49,8 @@ setColor(9,0,"green");
 function createGame() {
     console.log("HIER");
     var start_x, start_y;
-    var players = 4;
-    var player = ["Player1", "Player2", "Player3", "Player4"];
-    var game = 1;
+    players = 4;
+    game = 1;
 
     // write player in database
     for (i = 0; i < players || i < 4; ++i) {
