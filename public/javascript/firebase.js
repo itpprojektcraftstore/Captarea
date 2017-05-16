@@ -12,6 +12,9 @@
       var game = 0;
       var players = 0;
       var player = ["Player1", "Player2", "Player3", "Player4"];
+      var name = "Johannes";
+      var position = -1;
+      var is_admin = false;
 
 /*
       document.addEventListener('DOMContentLoaded', function() {

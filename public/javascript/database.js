@@ -73,4 +73,9 @@ function createGame() {
             });
         }
     }
+
+    //write ready in database
+    firebase.database().ref('Game '+game+'/Ready').set({
+        ready: false
+    });
 }
