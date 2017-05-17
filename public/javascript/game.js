@@ -50,14 +50,36 @@ function startGame() {
 }
 
 function closeGame() {
-    if(document.getElementById("score1").innerHTML > document.getElementById("score2").innerHTML) {
-        alert("Player 1 wins");
+    var score1, score2, score3, score4;
+
+    for (i = 1; i <= gl_players; ++i) {
+        if (i == 1) { score1 = parseInt(document.getElementById("score1").innerHTML); }
+        else if (i == 2) { score2 = parseInt(document.getElementById("score2").innerHTML); }
+        else if (i == 3) { sscore3 = parseInt(document.getElementById("score3").innerHTML); }
+        else if (i == 4) { score4 = parseInt(document.getElementById("score4").innerHTML); }
     }
-    else if (document.getElementById("score1").innerHTML < document.getElementById("score2").innerHTML) {
-        alert("Player 2 wins");
+
+    switch(gl_players) {
+
+        case 2:
+            if (score1 > score2) { alert(gl_player_array[0]+" wins"); }
+            else if (score2 > score1) { alert(gl_player_array[1]+" wins"); }
+            else { alert("draw"); }
+            break;
+
+        case 3:
+            if (score1 > score2 && score1 > score3) { alert(gl_player_array[0]+" wins"); }
+            else if (score2 > score1 && score2 > score3) { alert(gl_player_array[1]+" wins"); }
+            else if (score3 > score1 && score3 > score2) { alert(gl_player_array[2]+" wins"); }
+            else { alert("draw"); }
+            break;
+
+        case 4:
+            if (score1 > score2 && score1 > score3 && score1 > score4) { alert(gl_player_array[0]+" wins"); }
+            else if (score2 > score1 && score2 > score3 && score2 > score4) { alert(gl_player_array[1]+" wins"); }
+            else if (score3 > score1 && score3 > score2 && score3 > score4) { alert(gl_player_array[2]+" wins"); }
+            else if (score4 > score1 && score4 > score2 && score4 > score3) { alert(gl_player_array[3]+" wins"); }
+            else { alert("draw"); }
+            break;
     }
-    else {
-        alert("draw");
-    }
-    
 }
