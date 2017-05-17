@@ -2,13 +2,13 @@ var score1 = 0;
 var score2 = 0;
 
 function setColor (x, y, color) {
-    firebase.database().ref('Game '+game+'/Map/x'+x+'y'+y).update({
+    firebase.database().ref('Game '+gl_game+'/Map/x'+x+'y'+y).update({
         color: color
     });
 }
 
 function getColor (x, y) {
-    return firebase.database().ref('Game '+game+'/Map/x'+x+'y'+y).once('value').then(function(snapshot) {
+    return firebase.database().ref('Game '+gl_game+'/Map/x'+x+'y'+y).once('value').then(function(snapshot) {
         return snapshot.val().color;
     });
 }
@@ -52,8 +52,8 @@ function changeAvailable(value) {
 }
 
 function inc_ready() {
-    firebase.database().ref('Game '+game+'/Ready').once('value').then(function(snapshot) {
-        firebase.database().ref('Game '+game+'/Ready').update({
+    firebase.database().ref('Game '+gl_game+'/Ready').once('value').then(function(snapshot) {
+        firebase.database().ref('Game '+gl_game+'/Ready').update({
             ready: snapshot.val().ready + 1
         });
     });
@@ -61,7 +61,7 @@ function inc_ready() {
 
 function startTimer() {
     // Set the date we're counting down to
-    var countDownDate = new Date().getTime()+1000*12;
+    var countDownDate = new Date().getTime()+1000*62;
 
     // Update the count down every 1 second
     var intervall = setInterval(function() {
@@ -82,7 +82,7 @@ function startTimer() {
         if (distance < 0) {
             clearInterval(intervall);
             document.getElementById("demo").innerHTML = "";
-            closeGame();
+            //closeGame();
         }
     }, 1000);
 }

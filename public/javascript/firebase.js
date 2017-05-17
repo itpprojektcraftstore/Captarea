@@ -9,13 +9,13 @@
       };
       firebase.initializeApp(config);
 
-      var game = 0;
-      var players = 1;
-      var player = ["Player1", "Player2", "Player3", "Player4"];
-      var name = "Johannes";
-      var position = -1;
-      var is_admin = false;
-      var game_start = false;
+      var gl_game = 0;
+      var gl_players = 1;
+      var gl_player_array = ["Player1", "Player2", "Player3", "Player4"];
+      var gl_name = "Johannes";
+      var gl_player_index;
+      var gl_is_admin = false;
+      var gl_game_start = false;
 
 /*
       document.addEventListener('DOMContentLoaded', function() {
