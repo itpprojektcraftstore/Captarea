@@ -21,5 +21,9 @@
     {
       "Name" : "player1"
     }
+  },
+  "Available" :
+  {
+    "Index" : 1
   }
 }

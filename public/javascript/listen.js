@@ -1,5 +1,16 @@
 
-function set_listen_var() {
+function set_listen_ready() {
+
+var listen_ready = firebase.database().ref('Game '+game+'/Ready');
+listen_ready.on('value', function(snapshot) {
+    if(game_start == false && snapshot.val().ready == players) {
+        startGame();
+    }
+});
+
+}
+
+function set_listen_map() {
 
 /* ***** y0 ***** */
 
