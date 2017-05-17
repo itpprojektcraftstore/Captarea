@@ -17,10 +17,12 @@ function countScore(color, old_color) {
     if (color == "red") { 
         ++score1;
         document.getElementById("score1").innerHTML = score1;
+        document.getElementById("score1_prefix").innerHTML = gl_player_array[0]+" (rot): ";
     }
     else if (color == "green") {
         ++score2;
         document.getElementById("score2").innerHTML = score2;
+        document.getElementById("score2_prefix").innerHTML = gl_player_array[1]+" (grün): ";
     }
     if (old_color != "rgb(255, 255, 255)") { decScore(old_color); }
 }
@@ -75,14 +77,14 @@ function startTimer() {
         // Time calculations for seconds
         var seconds = Math.floor((distance % (1000 * 61)) / 1000);
 
-        // Display the result in the element with id="demo"
-        document.getElementById("demo").innerHTML = seconds + "s ";
+        // Display the result in the element with id="timer"
+        document.getElementById("timer").innerHTML = seconds + "s ";
 
         // If the count down is finished, write some text 
         if (distance < 0) {
             clearInterval(intervall);
-            document.getElementById("demo").innerHTML = "";
-            //closeGame();
+            document.getElementById("timer").innerHTML = "";
+            closeGame();
         }
     }, 1000);
 }

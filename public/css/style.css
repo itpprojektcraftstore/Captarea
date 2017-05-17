@@ -41,3 +41,7 @@ h1{
     border-style: solid 1px black;
     max-width: 600px;
 }
+
+.text-center{
+    text-align: center;
+}

@@ -14,6 +14,7 @@ function startGame() {
     var start_x, start_y, player_color;
     gl_players = 2;
     gl_player_index = 1;
+    gl_player_array[gl_player_index-1] = "Johannes";
     gl_game_start = true;
 
     // write map in database
