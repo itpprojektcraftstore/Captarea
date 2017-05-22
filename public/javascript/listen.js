@@ -3,7 +3,7 @@ function set_listen_ready() {
 
 var listen_ready = firebase.database().ref('Game '+gl_game+'/Ready');
 listen_ready.on('value', function(snapshot) {
-    if(gl_game_start == false && snapshot.val().ready == gl_players) {
+    if(snapshot.val().ready == gl_players) {
         startGame();
     }
 });

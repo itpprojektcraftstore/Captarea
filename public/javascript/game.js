@@ -5,17 +5,18 @@ function createGame() {
         firebase.database().ref('Game '+gl_game+'/Ready').set({
             ready: 0
         });
-        set_listen_ready();
+        gl_is_admin = true;
+        if (gl_is_admin) { set_listen_ready(); }
         inc_ready();
     });
 }
 
 function startGame() {
     var start_x, start_y, player_color;
+
     gl_players = 2;
     gl_player_index = 1;
     gl_player_array[gl_player_index-1] = "Johannes";
-    gl_game_start = true;
 
     // write map in database
     for (y = 0; y < 10; ++y) {
