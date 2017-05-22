@@ -8,4 +8,6 @@ $(document).ready(function(){
         }
         $('#board').append("<br>");
     }
+
+    createGame();
 });

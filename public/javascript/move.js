@@ -21,7 +21,6 @@ function move (player, direction) {
         case 'up':
             getPlayerPosition(player).then(function(pos){
                 if ((pos.y > 0) && checkCollision(direction, pos.x, pos.y)) {
-                    delPlayerIndicator(pos.x, pos.y);
                     pos.y--;
                     setPlayerPosition_y(player, pos.y);
                     setColor(pos.x, pos.y, player_color);
@@ -32,7 +31,6 @@ function move (player, direction) {
         case 'down':
                 getPlayerPosition(player).then(function(pos){
                 if ((pos.y < 9) && checkCollision(direction, pos.x, pos.y)) {
-                    delPlayerIndicator(pos.x, pos.y);
                     pos.y++;
                     setPlayerPosition_y(player, pos.y);
                     setColor(pos.x, pos.y, player_color);
@@ -43,7 +41,6 @@ function move (player, direction) {
         case 'left':
             getPlayerPosition(player).then(function(pos){
                 if ((pos.x > 0) && checkCollision(direction, pos.x, pos.y)) {
-                    delPlayerIndicator(pos.x, pos.y);
                     pos.x--;
                     setPlayerPosition_x(player, pos.x);
                     setColor(pos.x, pos.y, player_color);
@@ -54,7 +51,6 @@ function move (player, direction) {
         case 'right':
             getPlayerPosition(player).then(function(pos){
                 if ((pos.x < 9) && checkCollision(direction, pos.x, pos.y)) {
-                    delPlayerIndicator(pos.x, pos.y);
                     pos.x++;
                     setPlayerPosition_x(player, pos.x);
                     setColor(pos.x, pos.y, player_color);
@@ -89,7 +85,7 @@ function checkTime() {
 }
 
 function getPlayerPosition (player) {
-    return firebase.database().ref('Player/player '+player).once('value').then(function(snapshot) {
+    return firebase.database().ref('Game '+gl_game+'/Player/player '+player).once('value').then(function(snapshot) {
         var position = {
             x : snapshot.val().x,
             y : snapshot.val().y
@@ -99,34 +95,22 @@ function getPlayerPosition (player) {
 }
 
 function setPlayerPosition_x(player, new_x) {
-    firebase.database().ref('Player/player '+player).update({
+    firebase.database().ref('Game '+gl_game+'/Player/player '+player).update({
         x: new_x
-    });
-    //Place player indicator
-    firebase.database().ref('Player/player '+player).once('value').then(function(snapshot) {
-        var x = snapshot.val().x;
-        var y = snapshot.val().y;
-        document.getElementById('x'+x+'y'+y).innerHTML="<img src=\"/img/player"+player+".gif\">";
     });
 }
 
 function setPlayerPosition_y(player, new_y) {
-    firebase.database().ref('Player/player '+player).update({
+    firebase.database().ref('Game '+gl_game+'/Player/player '+player).update({
         y: new_y
     });
-    //Place player indicator
-    firebase.database().ref('Player/player '+player).once('value').then(function(snapshot) {
-        var x = snapshot.val().x;
-        var y = snapshot.val().y;
-        document.getElementById('x'+x+'y'+y).innerHTML="<img src=\"/img/player"+player+".gif\">";
-    });
 }
 
-function delPlayerIndicator(x, y){
-    document.getElementById('x'+x+'y'+y).innerHTML="";
+function deletePlayerImg(player) {
+    for(i = 0; typeof document.images[i] != 'undefined' ; ++i) {
+        var index = document.images[i].src.lastIndexOf("player");
+        if(document.images[i].src.substr(index+6, 1) == player) {
+            document.images[i].parentNode.innerHTML = "";
+        }
+    }
 }
-
-setPlayerPosition_x(1, 0);
-setPlayerPosition_y(1, 0);
-setPlayerPosition_x(2, 9);
-setPlayerPosition_y(2, 0);
