@@ -1,5 +1,7 @@
 var score1 = 0;
 var score2 = 0;
+var score3 = 0;
+var score4 = 0;
 
 function setColor (x, y, color) {
     firebase.database().ref('Game '+gl_game+'/Map/x'+x+'y'+y).update({
@@ -24,6 +26,7 @@ function countScore(color, old_color) {
         document.getElementById("score2").innerHTML = score2;
         document.getElementById("score2_prefix").innerHTML = gl_player_array[1]+" (grün): ";
     }
+    //TODO 2 more colors
     if (old_color != "rgb(255, 255, 255)") { decScore(old_color); }
 }
 
@@ -36,6 +39,7 @@ function decScore(old_color) {
         --score2;
         document.getElementById("score2").innerHTML = score2;
     }
+    //TODO 2 more colors
 }
 
 function getAvailable () {

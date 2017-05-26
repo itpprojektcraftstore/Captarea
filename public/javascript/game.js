@@ -31,8 +31,8 @@ function startGame() {
     for (i = 0; i < gl_players; ++i) {
         if (i == 0) { start_x = 0; start_y = 0; player_color = "red";}
         else if (i == 1) { start_x = 9; start_y = 0; player_color = "green";}
-        else if (i == 2) { start_x = 0; start_y = 9; player_color = "black";}
-        else if (i == 3) { start_x = 9; start_y = 9; player_color = "black";}
+        else if (i == 2) { start_x = 0; start_y = 9; player_color = "blue";}
+        else if (i == 3) { start_x = 9; start_y = 9; player_color = "yellow";}
         firebase.database().ref('Game '+gl_game+'/Player/player '+(i+1)).set({
             x: start_x,
             y: start_y,
