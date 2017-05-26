@@ -37,9 +37,14 @@ h1{
     width: 15em;
 }
 
-.gamebrowse{
-    border-style: solid 1px black;
+.border{
+    border: solid 1px black;
     max-width: 600px;
+}
+
+.player{
+    max-width: 500px;
+    margin-bottom: 2px;
 }
 
 .text-center{
