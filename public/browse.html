@@ -29,6 +29,7 @@
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa"
         crossorigin="anonymous"></script>
 
+    <script src="javascript/drawHTML.js"></script>
     <link rel="stylesheet" href="css/style.css">
 </head>
 
@@ -36,18 +37,17 @@
     <a href="gameplay_test.html">gameplay test </a>
     <a href="browse.html">browse </a>
     <a href="lobby.html">lobby </a>
-    <div class="container">
-        <h1>Captarea</h1>
-        <br>
+    <h1>Captarea</h1>
+    <br>
+    <div id="games" class="container">
         <div id="gameX" class="border container">
             <p style="display:inline;">GameX</p>
-            <button onclick="" class="btn" style="float:right;">Join Game</button>
+            <button class="btn" style="float:right;">Join Game</button>
             <p style="float:right;">X/Y Player</p>
         </div>
-        <button onclick="" class="center btn">create new game</button>
-
-        
+        <br>
     </div>
+    <button id="newGameBtn" class="center btn">create new game</button>
 
 </body>
 
