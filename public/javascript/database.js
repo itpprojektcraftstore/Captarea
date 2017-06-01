@@ -4,7 +4,7 @@ var score3 = 0;
 var score4 = 0;
 
 function login(){
-    var name = document.getElementById("input_username").value;
+    gl_name = document.getElementById("input_username").value;
     document.location.href = "browse.html";
 }
 
@@ -59,7 +59,6 @@ function changeAvailable(value) {
             Index: snapshot.val().Index + value
         });
     });
-    
 }
 
 function inc_ready() {

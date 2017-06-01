@@ -1,4 +1,5 @@
 function createGame() {
+    var start_x, start_y;
     getAvailable().then(function(available){
         gl_game = available;
         //write ready in database
@@ -7,16 +8,25 @@ function createGame() {
         });
         gl_is_admin = true;
         if (gl_is_admin) { set_listen_ready(); }
+        changeAvailable(1);
         inc_ready();
+
+        for (i = 0; i < 4; ++i) {
+            if (i == 0) { start_x = 0; start_y = 0;}
+            else if (i == 1) { start_x = 9; start_y = 0;}
+            else if (i == 2) { start_x = 0; start_y = 9;}
+            else if (i == 3) { start_x = 9; start_y = 9;}
+            firebase.database().ref('Game '+gl_game+'/Player/player '+(i+1)).set({
+                x: start_x,
+                y: start_y,
+                name: " "
+            });
+        }
     });
 }
 
 function startGame() {
     var start_x, start_y, player_color;
-
-    gl_players = 2;
-    gl_player_index = 1;
-    gl_player_array[gl_player_index-1] = "Johannes";
 
     // write map in database
     for (y = 0; y < 10; ++y) {
@@ -28,18 +38,22 @@ function startGame() {
     }
 
     // write player in database, set start colors & player images 
-    for (i = 0; i < gl_players; ++i) {
-        if (i == 0) { start_x = 0; start_y = 0; player_color = "red";}
-        else if (i == 1) { start_x = 9; start_y = 0; player_color = "green";}
-        else if (i == 2) { start_x = 0; start_y = 9; player_color = "blue";}
-        else if (i == 3) { start_x = 9; start_y = 9; player_color = "yellow";}
-        firebase.database().ref('Game '+gl_game+'/Player/player '+(i+1)).set({
-            x: start_x,
-            y: start_y,
-            name: gl_player_array[i]
-        });
-        document.getElementById('x'+start_x+'y'+start_y).innerHTML="<img src=\"/img/player"+(i+1)+".gif\">";
-        setColor(start_x, start_y, player_color);
+    var name;
+    for (i = 1; i <= 4; ++i) {
+        name = getPlayerName(i);
+        if(name == " ") {
+            gl_players = i;
+            break;
+        }
+        else {
+            gl_player_array[i-1] = name;
+            if (i == 1) { start_x = 0; start_y = 0; player_color = "red";}
+            else if (i == 2) { start_x = 9; start_y = 0; player_color = "green";}
+            else if (i == 3) { start_x = 0; start_y = 9; player_color = "blue";}
+            else if (i == 4) { start_x = 9; start_y = 9; player_color = "yellow";}
+            document.getElementById('x'+start_x+'y'+start_y).innerHTML="<img src=\"/img/player"+i+".gif\">";
+            setColor(start_x, start_y, player_color);
+        }
     }
     
     for (i = 1; i <= gl_players; ++i) {
@@ -48,6 +62,12 @@ function startGame() {
     set_listen_map();
     
     startTimer();
+}
+
+function getPlayerName(index) {
+    return firebase.database().ref('Game '+gl_game+'/Player/player '+index).once('value').then(function(snapshot) {
+        return snapshot.val().name;
+    });
 }
 
 function closeGame() {
