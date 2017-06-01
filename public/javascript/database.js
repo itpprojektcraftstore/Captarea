@@ -3,6 +3,11 @@ var score2 = 0;
 var score3 = 0;
 var score4 = 0;
 
+function login(){
+    var name = document.getElementById("input_username").value;
+    document.location.href = "browse.html";
+}
+
 function setColor (x, y, color) {
     firebase.database().ref('Game '+gl_game+'/Map/x'+x+'y'+y).update({
         color: color

@@ -28,7 +28,8 @@
         crossorigin="anonymous" <!-- Latest compiled and minified JavaScript -->
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa"
         crossorigin="anonymous"></script>
-
+    
+    <script src="javascript/database.js"></script>
     <link rel="stylesheet" href="css/style.css">
 </head>
 
@@ -42,9 +43,10 @@
         <div id="login" class="form-groupe" action="" method="POST">
             <input id="input_username" class="form-control center" name="username" type="text" placeholder="Nickname">
             <br>
-            <button class="btn center">Spielen</button>
+            <button onclick="login()" class="btn center">Spielen</button>
         </div>
     </div>
+    <link rel="import" href="browse.html">
 
 </body>
 
