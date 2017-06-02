@@ -1,54 +1,9 @@
-<!DOCTYPE html>
-<html>
-
-<head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Captarea</title>
-
-    <!-- update the version number as needed -->
-    <script defer src="/__/firebase/3.8.0/firebase-app.js"></script>
-    <!-- include only the Firebase features as you need -->
-    <script defer src="/__/firebase/3.8.0/firebase-auth.js"></script>
-    <script defer src="/__/firebase/3.8.0/firebase-database.js"></script>
-    <script defer src="/__/firebase/3.8.0/firebase-messaging.js"></script>
-    <script defer src="/__/firebase/3.8.0/firebase-storage.js"></script>
-    <!-- initialize the SDK after all desired features are loaded -->
-    <script defer src="/__/firebase/init.js"></script>
-
-    <script src="https://www.gstatic.com/firebasejs/3.8.0/firebase.js"></script>
-
-    <script src="http://code.jquery.com/jquery-3.1.1.min.js"></script>
-
-    <!-- Latest compiled and minified CSS -->
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u"
-        crossorigin="anonymous">
-    <!-- Optional theme -->
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css" integrity="sha384-rHyoN1iRsVXV4nD0JutlnGaslCJuC7uwjduW9SVrLvRYooPp2bWYgmgJQIXwl/Sp"
-        crossorigin="anonymous" <!-- Latest compiled and minified JavaScript -->
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa"
-        crossorigin="anonymous"></script>
-
-    <script src="javascript/drawHTML.js"></script>
-    <link rel="stylesheet" href="css/style.css">
-</head>
-
-<body>
-    <a href="gameplay_test.html">gameplay test </a>
-    <a href="browse.html">browse </a>
-    <a href="lobby.html">lobby </a>
-    <h1>Captarea</h1>
-    <br>
-    <div id="games" class="container">
-        <div id="gameX" class="border container">
-            <p style="display:inline;">GameX</p>
-            <button class="btn" style="float:right;">Join Game</button>
-            <p style="float:right;">X/Y Player</p>
-        </div>
-        <br>
+<div id="games" class="container">
+    <div id="gameX" class="border container">
+        <p style="display:inline;">GameX</p>
+        <button id="joinGameBtn" class="btn" style="float:right;">Join Game</button>
+        <p style="float:right;">X/Y Player</p>
     </div>
+    <br>
     <button id="newGameBtn" class="center btn">create new game</button>
-
-</body>
-
-</html>
+</div>

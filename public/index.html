@@ -29,25 +29,29 @@
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa"
         crossorigin="anonymous"></script>
     
-    <script src="javascript/database.js"></script>
     <link rel="stylesheet" href="css/style.css">
+    
+    <script src="javascript/firebase.js"></script>
+    <script src="javascript/database.js"></script>
+    <script src="javascript/game.js"></script>
+    <script src="javascript/listen.js"></script>
+    <script src="javascript/move.js"></script>
+    <script src="javascript/drawBoard.js"></script>    
+    <script src="javascript/drawHTML.js"></script>
 </head>
 
 <body>
-    <a href="gameplay_test.html">gameplay test </a>
-    <a href="browse.html">browse </a>
-    <a href="lobby.html">lobby </a>
     <div class="container">
         <h1>Captarea</h1>
-        <img id="logo" src="" alt="LOGO" class="center" width="200px" height="200px">
-        <div id="login" class="form-groupe" action="" method="POST">
-            <input id="input_username" class="form-control center" name="username" type="text" placeholder="Nickname">
-            <br>
-            <button onclick="login()" class="btn center">Spielen</button>
+        <div id="view">
+            <div id="login" class="form-groupe" action="" method="POST">
+                <img id="logo" src="" alt="LOGO" class="center" width="200px" height="200px">
+                <input id="input_username" class="form-control center" name="username" type="text" placeholder="Nickname">
+                <br>
+                <button id="loginBtn" class="btn center">Spielen</button>
+            </div>
         </div>
     </div>
-    <link rel="import" href="browse.html">
-
 </body>
 
 </html>
