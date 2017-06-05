@@ -11,8 +11,8 @@
 
       var gl_game = 0;
       var gl_players = 1;
-      var gl_player_array = ["Player1", "Player2", "Player3", "Player4"];
-      var gl_player_index;
+      var gl_name;
+      var gl_player_array = [" ", " ", " ", " "];
       var gl_is_admin = false;
 
 /*
