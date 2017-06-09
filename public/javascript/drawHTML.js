@@ -53,6 +53,7 @@ function listGames(){
             snapshot.forEach(function(childSnapshot) {
                 var key = childSnapshot.key;
                 if (key != "Available" && key != "Highscore") {
+                    console.log(key.key);
                     var ind_space = key.indexOf(' ');
                     var number = key.substr(ind_space+1);
                     var $div = $("<div class=\"border container\"></div>");
