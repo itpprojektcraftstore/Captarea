@@ -14,7 +14,7 @@ $(document).ready(function(){
                         $('#subGames').append($div);
                         var $name = $("<p style=\"display:inline;\">" + key + "</p>");
                         $('#Game'+number).append($name);
-                        var $btn = $("<button class=\"btn\" style=\"float:right;\">Join Game</button>")
+                        var $btn = $("<button class=\"btn joinbtn\" style=\"float:right;\">Join Game</button>")
                         $($btn).attr('id', 'joinGameBtn' + number);
                         $('#Game' + number).append($btn);
                         var $count = $("<p style=\"float:right;\">X/Y Player</p>");
@@ -32,19 +32,19 @@ $(document).ready(function(){
         join(1);
     });
 
-    $( "body" ).delegate( "#testBtn", "click", function includeBrowse() {
+    $( "body" ).delegate( "#testBtn", "click", function includeBlank() {
         $('#view').load( 'blank.html');
     });
 
-    $( "body" ).delegate( "h1", "click", function includeBrowse() {
+    $( "body" ).delegate( "h1", "click", function includeLogin() {
         $('#view').load( 'login.html');
     });
 
      $( "body" ).delegate( ".joinbtn", "click", function (key) {
-        join(key);
+        join(1);
     });
 
-    $( "body" ).delegate( ".rdybtn", "click", function includeBrowse() {
+    $( "body" ).delegate( ".rdybtn", "click", function includeGameplay() {
         $('#view').load( 'gameplay_test.html', function() {
             for(y = 0; y < 10; y++){
                 for(x = 0; x < 10; x++){
