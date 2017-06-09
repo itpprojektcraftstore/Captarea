@@ -22,10 +22,6 @@ $(document).ready(function(){
         $('#view').load( 'login.html');
     });
 
-    $( "body" ).delegate( ".joinbtn", "click", function (key, $(this).attr("value")) {
-        join(key, $(this).attr("value"));
-    });
-
     $( "body" ).delegate( ".rdybtn", "click", function includeBrowse() {
         $('#view').load( 'gameplay_test.html', function() {
             for(y = 0; y < 10; y++){
