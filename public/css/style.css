@@ -1,6 +1,7 @@
 h1{
     text-align: center;
-    margin:.5em 0 1em 0;
+    margin:.5em 0 .5em 0;
+    cursor: pointer;
 }
 
 .field {
@@ -30,7 +31,7 @@ h1{
 }
 
 #login{
-    margin-top: 5em;
+    margin-top: 3em;
 }
 
 #input_username{

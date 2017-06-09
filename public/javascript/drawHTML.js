@@ -1,8 +1,4 @@
 $(document).ready(function(){
-    var GameNumber = 1;
-    $( "body" ).delegate( "#newGameBtn", "click", function newGame() {
-        createGame();
-    });
 
     $( "body" ).delegate( "#loginBtn", "click", function newGame() {
         gl_name = document.getElementById("input_username").value;
@@ -40,11 +36,11 @@ $(document).ready(function(){
         $('#view').load( 'login.html');
     });
 
-     $( "body" ).delegate( "#joinGameBtn", "click", function includeBrowse() {
+     $( "body" ).delegate( ".joinbtn", "click", function includeBrowse() {
         $('#view').load( 'lobby.html');
     });
 
-    $( "body" ).delegate( "#p1ready", "click", function includeBrowse() {
+    $( "body" ).delegate( ".rdybtn", "click", function includeBrowse() {
         $('#view').load( 'gameplay_test.html', function() {
             for(y = 0; y < 10; y++){
                 for(x = 0; x < 10; x++){
@@ -55,7 +51,6 @@ $(document).ready(function(){
                 }
                 $('#board').append("<br>");
             }
-            createGame();
         });
     });
 });
