@@ -1,16 +1,18 @@
 $(document).ready(function(){
+    var GameNumber = 1;
     $( "body" ).delegate( "#newGameBtn", "click", function newGame() {
         var $div = $("<div class=\"border container\"></div>");
-        $($div).attr('id', 'Game' + 'GameNumber');
-        $('#games').append($div);
-        var $name = $("<p style=\"display:inline;\">Game" + 'GameNumber' + "</p>");
-        $('#Game' + 'GameNumber').append($name);
+        $($div).attr('id', 'Game' + GameNumber);
+        $('#subGames').append($div);
+        var $name = $("<p style=\"display:inline;\">Game" + GameNumber + "</p>");
+        $('#Game' + GameNumber).append($name);
         var $btn = $("<button class=\"btn\" style=\"float:right;\">Join Game</button>")
         $($btn).attr('id', 'joinGameBtn');
-        $('#Game' + 'GameNumber').append($btn);
+        $('#Game' + GameNumber).append($btn);
         var $count = $("<p style=\"float:right;\">X/Y Player</p>");
-        $('#Game' + 'GameNumber').append($count);
-        $('#games').append("<br>");
+        $('#Game' + GameNumber).append($count);
+        $('#subGames').append("<br>");
+        GameNumber++;
     });
 
     $( "body" ).delegate( "#loginBtn", "click", function newGame() {
