@@ -58,7 +58,7 @@ function listGames(){
                     var $div = $("<div class=\"border container\"></div>");
                     $($div).attr('id', 'Game'+number);
                     $('#subGames').append($div);
-                    var $name = $("<p style=\"display:inline;\">" + key + "</p>");
+                    var $name = $("<p style=\"display:inline;\">" + key + " hosted by: " + /*Host Name*/ + "</p>");
                     $('#Game'+number).append($name);
                     var $btn = $("<button class=\"btn joinbtn\" style=\"float:right;\">Join Game</button>")
                     $($btn).attr('id', 'joinGameBtn' + number);
