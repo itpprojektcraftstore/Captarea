@@ -1,5 +1,4 @@
 $(document).ready(function(){
-
     $( "body" ).delegate( "#loginBtn", "click", function newGame() {
         gl_name = document.getElementById("input_username").value;
         $( "#view" ).load( "browse.html #games", function(){
@@ -28,6 +27,11 @@ $(document).ready(function(){
         $('#login').load( 'blank.html');
     });
 
+    $( "body" ).delegate( "#newGameBtn", "click", function() {
+        createGame();
+        join();
+    });
+
     $( "body" ).delegate( "#testBtn", "click", function includeBrowse() {
         $('#view').load( 'blank.html');
     });
@@ -36,7 +40,7 @@ $(document).ready(function(){
         $('#view').load( 'login.html');
     });
 
-     $( "body" ).delegate( ".joinbtn", "click", function includeBrowse() {
+     $( "body" ).delegate( ".joinbtn", "click", function join(key) {
         $('#view').load( 'lobby.html');
     });
 
