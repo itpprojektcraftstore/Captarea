@@ -1,6 +1,7 @@
 $(document).ready(function(){
     var GameNumber = 1;
     $( "body" ).delegate( "#newGameBtn", "click", function newGame() {
+        createGame();
         var $div = $("<div class=\"border container\"></div>");
         $($div).attr('id', 'Game' + GameNumber);
         $('#subGames').append($div);
@@ -13,6 +14,7 @@ $(document).ready(function(){
         $('#Game' + GameNumber).append($count);
         $('#subGames').append("<br>");
         GameNumber++;
+        
     });
 
     $( "body" ).delegate( "#loginBtn", "click", function newGame() {
@@ -29,7 +31,7 @@ $(document).ready(function(){
         $('#view').load( 'login.html');
     });
 
-     $( "body" ).delegate( "#joinGameBtn", "click", function includeBrowse() {
+     $( "body" ).delegate( ".joinbtn", "click", function includeBrowse() {
         $('#view').load( 'lobby.html');
     });
 
@@ -44,7 +46,6 @@ $(document).ready(function(){
                 }
                 $('#board').append("<br>");
             }
-            createGame();
         });
     });
 });
