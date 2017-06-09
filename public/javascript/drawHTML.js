@@ -29,7 +29,7 @@ $(document).ready(function(){
 
     $( "body" ).delegate( "#newGameBtn", "click", function() {
         createGame();
-        join();
+        join(1);
     });
 
     $( "body" ).delegate( "#testBtn", "click", function includeBrowse() {
@@ -40,8 +40,8 @@ $(document).ready(function(){
         $('#view').load( 'login.html');
     });
 
-     $( "body" ).delegate( ".joinbtn", "click", function join(key) {
-        $('#view').load( 'lobby.html');
+     $( "body" ).delegate( ".joinbtn", "click", function (key) {
+        join(key);
     });
 
     $( "body" ).delegate( ".rdybtn", "click", function includeBrowse() {
@@ -58,3 +58,8 @@ $(document).ready(function(){
         });
     });
 });
+
+function join(key) {
+    console.log("join");
+    $('#view').load( 'lobby.html');
+}
