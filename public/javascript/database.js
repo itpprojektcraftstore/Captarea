@@ -4,7 +4,7 @@ var score3 = 0;
 var score4 = 0;
 
 function login(){
-    var name = document.getElementById("input_username").value;
+    gl_name = document.getElementById("input_username").value;
     document.location.href = "browse.html";
 }
 
@@ -31,7 +31,17 @@ function countScore(color, old_color) {
         document.getElementById("score2").innerHTML = score2;
         document.getElementById("score2_prefix").innerHTML = gl_player_array[1]+" (grün): ";
     }
-    //TODO 2 more colors
+    else if (color == "blue") {
+        ++score3;
+        document.getElementById("score3").innerHTML = score3;
+        document.getElementById("score3_prefix").innerHTML = gl_player_array[2]+" (blau): ";
+    }
+    else if (color == "yellow") {
+        ++score4;
+        document.getElementById("score4").innerHTML = score4;
+        document.getElementById("score4_prefix").innerHTML = gl_player_array[3]+" (gelb): ";
+    }
+    
     if (old_color != "rgb(255, 255, 255)") { decScore(old_color); }
 }
 
@@ -44,7 +54,14 @@ function decScore(old_color) {
         --score2;
         document.getElementById("score2").innerHTML = score2;
     }
-    //TODO 2 more colors
+    else if (old_color == "rgb(0, 0, 255)") {  // blue
+        --score3;
+        document.getElementById("score3").innerHTML = score3;
+    }
+    else if (old_color == "rgb(255, 255, 0)") {  // yellow
+        --score4;
+        document.getElementById("score4").innerHTML = score4;
+    }
 }
 
 function getAvailable () {
@@ -59,7 +76,6 @@ function changeAvailable(value) {
             Index: snapshot.val().Index + value
         });
     });
-    
 }
 
 function inc_ready() {
@@ -96,4 +112,10 @@ function startTimer() {
             closeGame();
         }
     }, 1000);
+}
+
+function setPlayerName(i, name) {
+    firebase.database().ref('Game '+gl_game+'/Player/player '+i).update({
+        name: name
+    });
 }

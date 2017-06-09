@@ -1,22 +1,37 @@
 function createGame() {
+    var start_x, start_y;
     getAvailable().then(function(available){
         gl_game = available;
         //write ready in database
         firebase.database().ref('Game '+gl_game+'/Ready').set({
             ready: 0
+        }).then(function(){
+            inc_ready();
+            gl_is_admin = true;
+            //if (gl_is_admin) { set_listen_ready(); }
+        
+            changeAvailable(1);
+            
+            for (i = 0; i < 4; ++i) {
+                if (i == 0) { start_x = 0; start_y = 0;}
+                else if (i == 1) { start_x = 9; start_y = 0;}
+                else if (i == 2) { start_x = 0; start_y = 9;}
+                else if (i == 3) { start_x = 9; start_y = 9;}
+                firebase.database().ref('Game '+gl_game+'/Player/player '+(i+1)).set({
+                    x: start_x,
+                    y: start_y,
+                    name: '?'
+                }).then(function(){  console.log("!"); });
+            }
         });
-        gl_is_admin = true;
-        if (gl_is_admin) { set_listen_ready(); }
-        inc_ready();
     });
 }
 
 function startGame() {
+    console.log("start");
     var start_x, start_y, player_color;
-
-    gl_players = 2;
-    gl_player_index = 1;
-    gl_player_array[gl_player_index-1] = "Johannes";
+    setPlayerName(1, "PLAYER1");
+    setPlayerName(2, "PLAYER2");
 
     // write map in database
     for (y = 0; y < 10; ++y) {
@@ -28,26 +43,49 @@ function startGame() {
     }
 
     // write player in database, set start colors & player images 
-    for (i = 0; i < gl_players; ++i) {
-        if (i == 0) { start_x = 0; start_y = 0; player_color = "red";}
-        else if (i == 1) { start_x = 9; start_y = 0; player_color = "green";}
-        else if (i == 2) { start_x = 0; start_y = 9; player_color = "blue";}
-        else if (i == 3) { start_x = 9; start_y = 9; player_color = "yellow";}
-        firebase.database().ref('Game '+gl_game+'/Player/player '+(i+1)).set({
-            x: start_x,
-            y: start_y,
-            name: gl_player_array[i]
-        });
-        document.getElementById('x'+start_x+'y'+start_y).innerHTML="<img src=\"/img/player"+(i+1)+".gif\">";
-        setColor(start_x, start_y, player_color);
-    }
-    
-    for (i = 1; i <= gl_players; ++i) {
-        set_listen_player(i);
-    }
-    set_listen_map();
-    
-    startTimer();
+    getPlayerName(1).then(function(name1) {
+         getPlayerName(2).then(function(name2) {
+              getPlayerName(3).then(function(name3) {
+                   getPlayerName(4).then(function(name4) {
+                       var check = true;
+                       check = initPlayer(name1, 1, check);
+                       check = initPlayer(name2, 2, check);
+                       check = initPlayer(name3, 3, check);
+                       check = initPlayer(name4, 4, check);
+
+                       for (i = 1; i <= gl_players; ++i) {
+                           set_listen_player(i);
+                       }
+                       set_listen_map();
+                       startTimer();
+                   });
+              });
+         });
+    });
+}
+
+function initPlayer(name, index, check) {
+
+            if(name == "?") {
+                if (check) { gl_players = index-1; }
+                return false;
+            }
+            else {
+                gl_player_array[index-1] = name;
+                if (index == 1) { start_x = 0; start_y = 0; player_color = "red";}
+                else if (index == 2) { start_x = 9; start_y = 0; player_color = "green";}
+                else if (index == 3) { start_x = 0; start_y = 9; player_color = "blue";}
+                else if (index == 4) { start_x = 9; start_y = 9; player_color = "yellow";}
+                document.getElementById('x'+start_x+'y'+start_y).innerHTML="<img src=\"/img/player"+i+".gif\">";
+                setColor(start_x, start_y, player_color);
+                return true;
+            }
+}
+
+function getPlayerName(index) {
+    return firebase.database().ref('Game '+gl_game+'/Player/player '+index).once('value').then(function(snapshot) {
+        return snapshot.val().name;
+    });
 }
 
 function closeGame() {
