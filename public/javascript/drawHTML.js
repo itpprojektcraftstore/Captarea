@@ -14,6 +14,7 @@ $(document).ready(function(){
     });
 
     $( "body" ).delegate( "#loginBtn", "click", function newGame() {
+        gl_name = document.getElementById("input_username").value;
         $( "#view" ).load( "browse.html #games" );
         $('#login').load( 'blank.html');
     });
