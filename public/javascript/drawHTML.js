@@ -14,7 +14,7 @@ $(document).ready(function(){
                         $('#subGames').append($div);
                         var $name = $("<p style=\"display:inline;\">" + key + "</p>");
                         $('#Game'+number).append($name);
-                        var $btn = $("<button class=\"btn\" style=\"float:right;\">Join Game</button>")
+                        var $btn = $("<button class=\"btn joinbtn\" style=\"float:right;\">Join Game</button>")
                         $($btn).attr('id', 'joinGameBtn' + number);
                         $('#Game' + number).append($btn);
                         var $count = $("<p style=\"float:right;\">X/Y Player</p>");
