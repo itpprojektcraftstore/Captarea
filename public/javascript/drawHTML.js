@@ -54,6 +54,8 @@ function listGames(){
                 var key = childSnapshot.key;
                 if (key != "Available" && key != "Highscore") {
                     var host = childSnapshot.val().Player["player 1"].name;
+                    var cnt = 0;
+                    for(i=1;i<=4;++i) { if(childSnapshot.val().Player["player "+i].name != "?") { ++cnt; } }
                     var ind_space = key.indexOf(' ');
                     var number = key.substr(ind_space+1);
                     var $div = $("<div class=\"border container\"></div>");
@@ -64,7 +66,7 @@ function listGames(){
                     var $btn = $("<button class=\"btn joinbtn\" style=\"float:right;\">Join Game</button>")
                     $($btn).attr('id', 'joinGameBtn' + number);
                     $('#Game' + number).append($btn);
-                    var $count = $("<p style=\"float:right;\">X/Y Player</p>");
+                    var $count = $("<p style=\"float:right;\">"+cnt+"/4 Player</p>");
                     $('#Game' + number).append($count);
                     $('#subGames').append("<br>");
                 }
