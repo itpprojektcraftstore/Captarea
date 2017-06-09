@@ -1,5 +1,5 @@
 function createGame() {
-    var start_x, start_y;
+    var start_x, start_y, name;
     getAvailable().then(function(available){
         gl_game = available;
         //write ready in database
@@ -13,14 +13,14 @@ function createGame() {
             changeAvailable(1);
             
             for (i = 0; i < 4; ++i) {
-                if (i == 0) { start_x = 0; start_y = 0;}
-                else if (i == 1) { start_x = 9; start_y = 0;}
+                if (i == 0) { start_x = 0; start_y = 0; name = gl_name}
+                else if (i == 1) { start_x = 9; start_y = 0; name = '?'}
                 else if (i == 2) { start_x = 0; start_y = 9;}
                 else if (i == 3) { start_x = 9; start_y = 9;}
                 firebase.database().ref('Game '+gl_game+'/Player/player '+(i+1)).set({
                     x: start_x,
                     y: start_y,
-                    name: '?'
+                    name: name
                 }).then(function(){  console.log("!"); });
             }
         });

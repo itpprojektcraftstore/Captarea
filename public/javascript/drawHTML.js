@@ -1,23 +1,34 @@
 $(document).ready(function(){
     var GameNumber = 1;
     $( "body" ).delegate( "#newGameBtn", "click", function newGame() {
-        var $div = $("<div class=\"border container\"></div>");
-        $($div).attr('id', 'Game' + GameNumber);
-        $('#subGames').append($div);
-        var $name = $("<p style=\"display:inline;\">Game" + GameNumber + "</p>");
-        $('#Game' + GameNumber).append($name);
-        var $btn = $("<button class=\"btn\" style=\"float:right;\">Join Game</button>")
-        $($btn).attr('id', 'joinGameBtn' + GameNumber);
-        $('#Game' + GameNumber).append($btn);
-        var $count = $("<p style=\"float:right;\">X/Y Player</p>");
-        $('#Game' + GameNumber).append($count);
-        $('#subGames').append("<br>");
-        GameNumber++;
+        createGame();
     });
 
     $( "body" ).delegate( "#loginBtn", "click", function newGame() {
         gl_name = document.getElementById("input_username").value;
-        $( "#view" ).load( "browse.html #games" );
+        $( "#view" ).load( "browse.html #games", function(){
+            var query = firebase.database().ref("/").orderByKey();
+            query.once("value").then(function(snapshot) {
+                snapshot.forEach(function(childSnapshot) {
+                    var key = childSnapshot.key;
+                    if (key != "Available" && key != "Highscore") {
+                        var ind_space = key.indexOf(' ');
+                        var number = key.substr(ind_space+1);
+                        var $div = $("<div class=\"border container\"></div>");
+                        $($div).attr('id', 'Game'+number);
+                        $('#subGames').append($div);
+                        var $name = $("<p style=\"display:inline;\">" + key + "</p>");
+                        $('#Game'+number).append($name);
+                        var $btn = $("<button class=\"btn\" style=\"float:right;\">Join Game</button>")
+                        $($btn).attr('id', 'joinGameBtn' + number);
+                        $('#Game' + number).append($btn);
+                        var $count = $("<p style=\"float:right;\">X/Y Player</p>");
+                        $('#Game' + number).append($count);
+                        $('#subGames').append("<br>");
+                    }
+                });
+            });
+        });
         $('#login').load( 'blank.html');
     });
 
