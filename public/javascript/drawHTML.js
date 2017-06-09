@@ -41,6 +41,7 @@ $(document).ready(function(){
     });
 
      $( "body" ).delegate( ".joinbtn", "click", function (key) {
+        console.log("Hallo");
         join(key);
     });
 
