@@ -22,8 +22,8 @@ $(document).ready(function(){
         $('#view').load( 'login.html');
     });
 
-    $( "body" ).delegate( ".joinbtn", "click", function (key) {
-        join(key);
+    $( "body" ).delegate( ".joinbtn", "click", function (key, $(this).attr("value")) {
+        join(key, $(this).attr("value"));
     });
 
     $( "body" ).delegate( ".rdybtn", "click", function includeBrowse() {
@@ -42,8 +42,25 @@ $(document).ready(function(){
 });
 
 function join(key) {
-    console.log("join");
-    $('#view').load( 'lobby.html');
+    gl_game = key;
+    $('#view').load('lobby.html');
+
+    getPlayerName(2).then(function(name2) {
+        getPlayerName(3).then(function(name3) {
+            getPlayerName(4).then(function(name4) {
+                if(name2 == '?'){
+                    setPlayerName(2, gl_name);
+                } else if(name3 == '?'){
+                    setPlayerName(3, gl_name);
+                } else if(name4 == '?'){
+                    setPlayerName(4, gl_name);
+                } else {
+                    alert("Game full!");
+                }
+            });
+        });
+    });
+
 }
 
 function listGames(){
@@ -63,8 +80,9 @@ function listGames(){
                     $('#subGames').append($div);
                     var $name = $("<p style=\"display:inline;\">" + key + " hosted by: " + host + "</p>");
                     $('#Game'+number).append($name);
-                    var $btn = $("<button class=\"btn joinbtn\" style=\"float:right;\">Join Game</button>")
+                    var $btn = $("<button class=\"btn\" style=\"float:right;\">Join Game</button>")
                     $($btn).attr('id', 'joinGameBtn' + number);
+                    $($btn).attr('onclick', 'join('+ number + ')');
                     $('#Game' + number).append($btn);
                     var $count = $("<p style=\"float:right;\">"+cnt+"/4 Player</p>");
                     $('#Game' + number).append($count);
