@@ -53,13 +53,13 @@ function listGames(){
             snapshot.forEach(function(childSnapshot) {
                 var key = childSnapshot.key;
                 if (key != "Available" && key != "Highscore") {
-                    console.log(key.key);
+                    var host = childSnapshot.val().Player["player 1"].name;
                     var ind_space = key.indexOf(' ');
                     var number = key.substr(ind_space+1);
                     var $div = $("<div class=\"border container\"></div>");
                     $($div).attr('id', 'Game'+number);
                     $('#subGames').append($div);
-                    var $name = $("<p style=\"display:inline;\">" + key + " hosted by: " + /*Host Name*/ + "</p>");
+                    var $name = $("<p style=\"display:inline;\">" + key + " hosted by: " + host + "</p>");
                     $('#Game'+number).append($name);
                     var $btn = $("<button class=\"btn joinbtn\" style=\"float:right;\">Join Game</button>")
                     $($btn).attr('id', 'joinGameBtn' + number);
