@@ -7,7 +7,6 @@ $(document).ready(function(){
 
     $( "body" ).delegate( "#newGameBtn", "click", function() {
         createGame();
-        join(1);
     });
 
     $( "body" ).delegate( "#backBtn", "click", function() {
@@ -21,42 +20,66 @@ $(document).ready(function(){
     $( "body" ).delegate( "h1", "click", function includeBrowse() {
         $('#view').load( 'login.html');
     });
-
-    $( "body" ).delegate( ".rdybtn", "click", function includeBrowse() {
-        $('#view').load( 'gameplay_test.html', function() {
-            for(y = 0; y < 10; y++){
-                for(x = 0; x < 10; x++){
-                    var $div = $("<div></div>");
-                    $($div).attr('class', 'field');
-                    $($div).attr('id', 'x'+x+'y'+y);
-                    $("#board").append($div);
-                }
-                $('#board').append("<br>");
-            }
-        });
-    });
 });
 
 function join(key) {
     gl_game = key;
-    $('#view').load('lobby.html');
 
-    getPlayerName(2).then(function(name2) {
-        getPlayerName(3).then(function(name3) {
-            getPlayerName(4).then(function(name4) {
-                if(name2 == '?'){
+    firebase.database().ref('Game '+gl_game+'/Running').once('value').then(function(snapshot_running) {
+        if(!snapshot_running.val().running) {
+            firebase.database().ref('Game '+gl_game+'/Player').once('value').then(function(snapshot) {
+                
+                if(snapshot.val()["player 2"].name == '?'){
                     setPlayerName(2, gl_name);
-                } else if(name3 == '?'){
+                    setColor(9, 0, "green");
+                    gl_player_index = 2;
+                    set_listen_join();
+                    createLobby();
+                } else if(snapshot.val()["player 3"].name == '?'){
                     setPlayerName(3, gl_name);
-                } else if(name4 == '?'){
+                    setColor(0, 9, "yellow");
+                    gl_player_index = 3;
+                    set_listen_join();
+                    createLobby();
+                } else if(snapshot.val()["player 4"].name == '?'){
                     setPlayerName(4, gl_name);
+                    setColor(9, 9, "blue");
+                    gl_player_index = 4;
+                    set_listen_join();
+                    createLobby();
                 } else {
                     alert("Game full!");
                 }
             });
+        }
+        else {
+            alert("Game is already running");
+        }
+    });
+}
+
+function createLobby() {
+    $('#view').load('lobby.html', function(){
+        firebase.database().ref('Game '+gl_game+'/Player').once('value').then(function(snapshot) {
+            for( i = 1; i <= 4; ++i ) {
+                var name = snapshot.val()['player '+i].name;
+                var p, btn;
+                if(name != '?') {
+                    $('#Player'+i).attr('class', 'container border player');
+                    p = $("<p style=\"display:inline;\">"+name+"</p>");
+                    btn = $("<button id=\"p"+i+"ready\" onclick=\"ready_click("+i+")\" class=\"btn\" style=\"float:right;\">Ready</button>");
+                    $('#Player'+i).append(p);
+                    $('#Player'+i).append(btn);
+                }
+            }
+            set_listen_ready();
         });
     });
+}
 
+function ready_click(number) {
+    $('#p'+number+'ready').prop('disabled', true);
+    inc_ready();
 }
 
 function listGames(){
@@ -66,23 +89,25 @@ function listGames(){
             snapshot.forEach(function(childSnapshot) {
                 var key = childSnapshot.key;
                 if (key != "Available" && key != "Highscore") {
-                    var host = childSnapshot.val().Player["player 1"].name;
-                    var cnt = 0;
-                    for(i=1;i<=4;++i) { if(childSnapshot.val().Player["player "+i].name != "?") { ++cnt; } }
-                    var ind_space = key.indexOf(' ');
-                    var number = key.substr(ind_space+1);
-                    var $div = $("<div class=\"border container\"></div>");
-                    $($div).attr('id', 'Game'+number);
-                    $('#subGames').append($div);
-                    var $name = $("<p style=\"display:inline;\">" + key + " hosted by: " + host + "</p>");
-                    $('#Game'+number).append($name);
-                    var $btn = $("<button class=\"btn\" style=\"float:right;\">Join Game</button>")
-                    $($btn).attr('id', 'joinGameBtn' + number);
-                    $($btn).attr('onclick', 'join('+ number + ')');
-                    $('#Game' + number).append($btn);
-                    var $count = $("<p style=\"float:right;\">"+cnt+"/4 Player</p>");
-                    $('#Game' + number).append($count);
-                    $('#subGames').append("<br>");
+                    if(!childSnapshot.val().Running.running) {
+                        var host = childSnapshot.val().Player["player 1"].name;
+                        var cnt = 0;
+                        for(i=1;i<=4;++i) { if(childSnapshot.val().Player["player "+i].name != "?") { ++cnt; } }
+                        var ind_space = key.indexOf(' ');
+                        var number = key.substr(ind_space+1);
+                        var $div = $("<div class=\"border container\"></div>");
+                        $($div).attr('id', 'Game'+number);
+                        $('#subGames').append($div);
+                        var $name = $("<p style=\"display:inline;\">" + key + " hosted by: " + host + "</p>");
+                        $('#Game'+number).append($name);
+                        var $btn = $("<button class=\"btn\" style=\"float:right;\">Join Game</button>")
+                        $($btn).attr('id', 'joinGameBtn' + number);
+                        $($btn).attr('onclick', 'join('+ number + ')');
+                        $('#Game' + number).append($btn);
+                        var $count = $("<p style=\"float:right;\">"+cnt+"/4 Player</p>");
+                        $('#Game' + number).append($count);
+                        $('#subGames').append("<br>");
+                    }
                 }
             });
         });

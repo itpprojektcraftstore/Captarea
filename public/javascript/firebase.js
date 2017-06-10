@@ -13,7 +13,8 @@
       var gl_players = 1;
       var gl_name;
       var gl_player_array = [" ", " ", " ", " "];
-      var gl_is_admin = false;
+      var gl_player_index = 0;
+      var gl_game_start = false;
 
 /*
       document.addEventListener('DOMContentLoaded', function() {

@@ -31,15 +31,15 @@ function countScore(color, old_color) {
         document.getElementById("score2").innerHTML = score2;
         document.getElementById("score2_prefix").innerHTML = gl_player_array[1]+" (grün): ";
     }
-    else if (color == "blue") {
+    else if (color == "yellow") {
         ++score3;
         document.getElementById("score3").innerHTML = score3;
-        document.getElementById("score3_prefix").innerHTML = gl_player_array[2]+" (blau): ";
+        document.getElementById("score3_prefix").innerHTML = gl_player_array[2]+" (gelb): ";
     }
-    else if (color == "yellow") {
+    else if (color == "blue") {
         ++score4;
         document.getElementById("score4").innerHTML = score4;
-        document.getElementById("score4_prefix").innerHTML = gl_player_array[3]+" (gelb): ";
+        document.getElementById("score4_prefix").innerHTML = gl_player_array[3]+" (blau): ";
     }
     
     if (old_color != "rgb(255, 255, 255)") { decScore(old_color); }
@@ -54,11 +54,11 @@ function decScore(old_color) {
         --score2;
         document.getElementById("score2").innerHTML = score2;
     }
-    else if (old_color == "rgb(0, 0, 255)") {  // blue
+    else if (old_color == "rgb(255, 255, 0)") {  // yellow
         --score3;
         document.getElementById("score3").innerHTML = score3;
     }
-    else if (old_color == "rgb(255, 255, 0)") {  // yellow
+    else if (old_color == "rgb(0, 0, 255)") {  // blue
         --score4;
         document.getElementById("score4").innerHTML = score4;
     }

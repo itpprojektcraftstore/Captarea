@@ -1,13 +1,28 @@
 
 function set_listen_ready() {
+    var listen_ready = firebase.database().ref('Game '+gl_game+'/Ready');
+    listen_ready.on('value', function(snapshot_ready) {
+        var query = firebase.database().ref('Game '+gl_game+'/Player').orderByKey();
+        query.once("value").then(function(snapshot_player) {
+            gl_players = 1;
+            if(snapshot_player.val()["player 2"].name != "?") { gl_players++; }
+            if(snapshot_player.val()["player 3"].name != "?") { gl_players++; }
+            if(snapshot_player.val()["player 4"].name != "?") { gl_players++; }
+            
+            if(snapshot_ready.val().ready == gl_players) {
+                startGame();
+            }
+        });
+    });
+}
 
-var listen_ready = firebase.database().ref('Game '+gl_game+'/Ready');
-listen_ready.on('value', function(snapshot) {
-    if(snapshot.val().ready == gl_players) {
-        startGame();
-    }
-});
-
+function set_listen_join() {
+    var listen_join = firebase.database().ref('Game '+gl_game+'/Player');
+    listen_join.on('value', function(snapshot) {
+        if(!gl_game_start) {
+            createLobby();
+        }
+    });
 }
 
 function set_listen_player(player) {
