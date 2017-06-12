@@ -97,11 +97,9 @@ function createLobby() {
                     $('#Player'+i).attr('class', 'container border player');
                     p = $("<p style=\"display:inline;\">"+name+"</p>");
                     if (gl_player_index == i) {
-                        console.log("btn");
                         btn = $("<button id=\"p"+i+"ready\" onclick=\"ready_click("+i+")\" class=\"btn\" style=\"float:right;\">Ready</button>");
                     }
                     else {
-                        console.log("p");
                         btn = $("<p id=\"p"+i+"ready\" style=\"float:right;\">waiting...</p>");
                     }
                     $('#Player'+i).append(p);
