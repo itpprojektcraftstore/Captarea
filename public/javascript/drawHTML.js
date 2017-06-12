@@ -16,9 +16,16 @@ $(document).ready(function(){
     $( "body" ).delegate( "#backBtn", "click", function() {
         firebase.database().ref('Game '+gl_game+'/Running').once('value').then(function(snapshot_running) {
             if(!snapshot_running.val().running) {
-                firebase.database().ref('Game '+gl_game+'/Player').once('value').then(function(snapshot) { 
+                firebase.database().ref('Game '+gl_game+'/Player').once('value').then(function(snapshot) {
+                    gl_leave = true;
                     if(snapshot.val()["player 1"].name == gl_name){
                         setPlayerName(1, '?');
+                        getPlayer().then(function(snapshot){
+                            if (snapshot['player 4'].ready == 1) {
+                                if (gl_player_index == 4) { $('#p4ready').prop('disabled', true); }
+                                else { document.getElementById('p4ready').innerHTML = "ready"; }
+                            }
+                        });
                     } else if(snapshot.val()["player 2"].name == gl_name){
                         setPlayerName(2, '?');
                     } else if(snapshot.val()["player 3"].name == gl_game){

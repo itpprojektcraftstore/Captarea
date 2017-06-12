@@ -15,7 +15,7 @@
       var gl_player_array = [" ", " ", " ", " "];
       var gl_player_index = 0;
       var gl_game_start = false;
-
+      var gl_leave = false;
 /*
       document.addEventListener('DOMContentLoaded', function() {
         // // 🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥

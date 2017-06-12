@@ -19,9 +19,10 @@ function set_listen_ready() {
 function set_listen_join() {
     var listen_join = firebase.database().ref('Game '+gl_game+'/Player');
     listen_join.on('value', function(snapshot) {
-        if(!gl_game_start) {
+        if(!gl_game_start && !gl_leave) {
             createLobby();
         }
+        gl_leave = false;
     });
 }
 
