@@ -17,24 +17,14 @@ $(document).ready(function(){
         firebase.database().ref('Game '+gl_game+'/Running').once('value').then(function(snapshot_running) {
             if(!snapshot_running.val().running) {
                 firebase.database().ref('Game '+gl_game+'/Player').once('value').then(function(snapshot) { 
-                    if(snapshot.val()["player 2"].name == gl_name){
-                        setPlayerName(2, gl_name);
-                        setColor(9, 0, "green");
-                        gl_player_index = 2;
-                        set_listen_join();
-                        createLobby();
+                    if(snapshot.val()["player 1"].name == gl_name){
+                        setPlayerName(1, '?');
+                    } else if(snapshot.val()["player 2"].name == gl_name){
+                        setPlayerName(2, '?');
                     } else if(snapshot.val()["player 3"].name == gl_game){
-                        setPlayerName(3, gl_name);
-                        setColor(0, 9, "yellow");
-                        gl_player_index = 3;
-                        set_listen_join();
-                        createLobby();
+                        setPlayerName(3, '?');
                     } else if(snapshot.val()["player 4"].name == gl_game){
-                        setPlayerName(4, gl_name);
-                        setColor(9, 9, "blue");
-                        gl_player_index = 4;
-                        set_listen_join();
-                        createLobby();
+                        setPlayerName(4, '?');
                     }
                 });
             }
@@ -95,7 +85,7 @@ function createLobby() {
                 var p, btn;
                 if(name != '?') {
                     $('#Player'+i).attr('class', 'container border player');
-                    p = $("<p style=\"display:inline;\">"+name+"</p>");
+                    p = $("<p style=\"float:left;\">"+name+"</p>");
                     if (gl_player_index == i) {
                         btn = $("<button id=\"p"+i+"ready\" onclick=\"ready_click("+i+")\" class=\"btn\" style=\"float:right;\">Ready</button>");
                     }
