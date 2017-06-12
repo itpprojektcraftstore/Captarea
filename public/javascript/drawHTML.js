@@ -86,6 +86,7 @@ function listGames(){
     $( "#view" ).load( "browse.html #games", function(){
         var query = firebase.database().ref("/").orderByKey();
         query.once("value").then(function(snapshot) {
+            var cnt_game = 1;
             snapshot.forEach(function(childSnapshot) {
                 var key = childSnapshot.key;
                 if (key != "Available" && key != "Highscore") {
@@ -98,7 +99,8 @@ function listGames(){
                         var $div = $("<div class=\"border container\"></div>");
                         $($div).attr('id', 'Game'+number);
                         $('#subGames').append($div);
-                        var $name = $("<p style=\"display:inline;\">" + key + " hosted by: " + host + "</p>");
+                        var $name = $("<p style=\"display:inline;\">" + key.substr(0, 4) + " " + cnt_game + " - hosted by: " + host + "</p>");
+                        ++cnt_game;
                         $('#Game'+number).append($name);
                         var $btn = $("<button class=\"btn\" style=\"float:right;\">Join Game</button>")
                         $($btn).attr('id', 'joinGameBtn' + number);
