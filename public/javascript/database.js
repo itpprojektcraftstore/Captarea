@@ -20,6 +20,12 @@ function getColor (x, y) {
     });
 }
 
+function getPlayer () {
+    return firebase.database().ref('Game '+gl_game+'/Player').once('value').then(function(snapshot) {
+        return snapshot.val();
+    });
+}
+
 function countScore(color, old_color) {
     if (color == "red") { 
         ++score1;

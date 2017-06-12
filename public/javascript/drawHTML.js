@@ -95,10 +95,50 @@ function createLobby() {
                 var p, btn;
                 if(name != '?') {
                     $('#Player'+i).attr('class', 'container border player');
+                    p = $("<p style=\"display:inline;\">"+name+"</p>");
+                    if (gl_player_index == i) {
+                        btn = $("<button id=\"p"+i+"ready\" onclick=\"ready_click("+i+")\" class=\"btn\" style=\"float:right;\">Ready</button>");
+                    }
+                    else {
+                        btn = $("<p id=\"p"+i+"ready\" style=\"float:right;\">waiting...</p>");
+                    }
                     p = $("<p style=\"float:left;\">"+name+"</p>");
                     btn = $("<button id=\"p"+i+"ready\" onclick=\"ready_click("+i+")\" class=\"btn\" style=\"float:right;\">Ready</button>");
                     $('#Player'+i).append(p);
                     $('#Player'+i).append(btn);
+
+                    if (i == 1) {
+                        getPlayer().then(function(snapshot){
+                            if (snapshot['player 1'].ready == 1) {
+                                if (gl_player_index == 1) { $('#p1ready').prop('disabled', true); }
+                                else { document.getElementById('p1ready').innerHTML = "ready"; }
+                            }
+                        });
+                    }
+                    else if (i == 2) {
+                        getPlayer().then(function(snapshot){
+                            if (snapshot['player 2'].ready == 1) {
+                                if (gl_player_index == 2) { $('#p2ready').prop('disabled', true); }
+                                else { document.getElementById('p2ready').innerHTML = "ready"; }
+                            }
+                        });
+                    }
+                    else if (i == 3) {
+                        getPlayer().then(function(snapshot){
+                            if (snapshot['player 3'].ready == 1) {
+                                if (gl_player_index == 3) { $('#p3ready').prop('disabled', true); }
+                                else { document.getElementById('p3ready').innerHTML = "ready"; }
+                            }
+                        });
+                    }
+                    else if (i == 4) {
+                        getPlayer().then(function(snapshot){
+                            if (snapshot['player 4'].ready == 1) {
+                                if (gl_player_index == 4) { $('#p4ready').prop('disabled', true); }
+                                else { document.getElementById('p4ready').innerHTML = "ready"; }
+                            }
+                        });
+                    }  
                 }
             }
             set_listen_ready();
@@ -108,6 +148,9 @@ function createLobby() {
 
 function ready_click(number) {
     $('#p'+number+'ready').prop('disabled', true);
+    firebase.database().ref('Game '+gl_game+'/Player/player '+number).update({
+        ready: 1
+    });
     inc_ready();
 }
 
