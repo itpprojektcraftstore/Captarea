@@ -92,6 +92,14 @@ function inc_ready() {
     });
 }
 
+function dec_ready() {
+    firebase.database().ref('Game '+gl_game+'/Ready').once('value').then(function(snapshot) {
+        firebase.database().ref('Game '+gl_game+'/Ready').update({
+            ready: snapshot.val().ready - 1
+        });
+    });
+}
+
 function startTimer() {
     // Set the date we're counting down to
     var countDownDate = new Date().getTime()+1000*62;

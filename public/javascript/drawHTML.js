@@ -18,33 +18,18 @@ $(document).ready(function(){
             if(!snapshot_running.val().running) {
                 firebase.database().ref('Game '+gl_game+'/Player').once('value').then(function(snapshot) {
                     gl_leave = true;
-                    if(snapshot.val()["player 1"].name == gl_name){
-                        setPlayerName(1, '?');
-                        getPlayer().then(function(snapshot){
-                            if (snapshot['player 4'].ready == 1) {
-                                if (gl_player_index == 4) { $('#p4ready').prop('disabled', true); }
-                                else { document.getElementById('p4ready').innerHTML = "ready"; }
-                            }
-                            firebase.database().ref('Game '+gl_game+'/Player/player '+i).update({
+
+                    setPlayerName(gl_player_index, '?');
+                    getPlayer().then(function(snapshot){
+                        if (snapshot['player '+gl_player_index].ready == 1) {
+                            firebase.database().ref('Game '+gl_game+'/Player/player '+gl_player_index).update({
                                 ready: 0
+                            }).then(function(){
+                                gl_leave = false;
                             });
-                        });
-                    } else if(snapshot.val()["player 2"].name == gl_name){
-                        setPlayerName(2, '?');
-                        firebase.database().ref('Game '+gl_game+'/Player/player '+i).update({
-                            ready: 0
-                        });
-                    } else if(snapshot.val()["player 3"].name == gl_game){
-                        setPlayerName(3, '?');
-                        firebase.database().ref('Game '+gl_game+'/Player/player '+i).update({
-                            ready: 0
-                        });
-                    } else if(snapshot.val()["player 4"].name == gl_game){
-                        setPlayerName(4, '?');
-                        firebase.database().ref('Game '+gl_game+'/Player/player '+i).update({
-                            ready: 0
-                        });
-                    }
+                            dec_ready();
+                        }
+                    });
                 });
             }
         });

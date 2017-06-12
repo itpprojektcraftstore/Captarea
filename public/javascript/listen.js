@@ -22,7 +22,6 @@ function set_listen_join() {
         if(!gl_game_start && !gl_leave) {
             createLobby();
         }
-        gl_leave = false;
     });
 }
 
