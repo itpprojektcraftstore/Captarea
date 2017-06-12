@@ -9,6 +9,10 @@ $(document).ready(function(){
         createGame();
     });
 
+    $( "body" ).delegate( "#refreshBtn", "click", function() {
+        listGames();
+    });
+
     $( "body" ).delegate( "#backBtn", "click", function() {
         listGames();
     });
@@ -66,7 +70,7 @@ function createLobby() {
                 var p, btn;
                 if(name != '?') {
                     $('#Player'+i).attr('class', 'container border player');
-                    p = $("<p style=\"display:inline;\">"+name+"</p>");
+                    p = $("<p style=\"float:left;\">"+name+"</p>");
                     btn = $("<button id=\"p"+i+"ready\" onclick=\"ready_click("+i+")\" class=\"btn\" style=\"float:right;\">Ready</button>");
                     $('#Player'+i).append(p);
                     $('#Player'+i).append(btn);
@@ -99,14 +103,14 @@ function listGames(){
                         var $div = $("<div class=\"border container\"></div>");
                         $($div).attr('id', 'Game'+number);
                         $('#subGames').append($div);
-                        var $name = $("<p style=\"display:inline;\">" + key.substr(0, 4) + " " + cnt_game + " - hosted by: " + host + "</p>");
+                        var $name = $("<p style=\"float:left;\">" + key.substr(0, 4) + " " + cnt_game + " - hosted by: " + host + "</p>");
                         ++cnt_game;
                         $('#Game'+number).append($name);
                         var $btn = $("<button class=\"btn\" style=\"float:right;\">Join Game</button>")
                         $($btn).attr('id', 'joinGameBtn' + number);
                         $($btn).attr('onclick', 'join('+ number + ')');
                         $('#Game' + number).append($btn);
-                        var $count = $("<p style=\"float:right;\">"+cnt+"/4 Player</p>");
+                        var $count = $("<p style=\"float:right;margin-right:5px;\">"+cnt+"/4 Players   </p>");
                         $('#Game' + number).append($count);
                         $('#subGames').append("<br>");
                     }

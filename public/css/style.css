@@ -30,6 +30,14 @@ h1{
     padding: 1em;
 }
 
+#browseButtons{
+    max-width: 600px;
+}
+
+#newGameBtn{
+   margin-left: 231.7px;
+}
+
 #login{
     margin-top: 3em;
 }
@@ -42,6 +50,12 @@ h1{
     border: solid 1px black;
     max-width: 600px;
     border-radius: 5px;
+    padding-right: 0px;
+}
+
+.border p{
+    display: inline;
+    margin: 8px 0 0 0;
 }
 
 .player{
