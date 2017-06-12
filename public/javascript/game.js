@@ -30,25 +30,29 @@ function createGame() {
             firebase.database().ref('Game '+gl_game+'/Player/player 1').set({
                 x: start_x,
                 y: start_y,
-                name: name
+                name: name,
+                ready: 0
             }).then(function(){
                 start_x = 9; start_y = 0; name = '?'
                 firebase.database().ref('Game '+gl_game+'/Player/player 2').set({
                     x: start_x,
                     y: start_y,
-                    name: name
+                    name: name,
+                    ready: 0
                 }).then(function(){
                      start_x = 0; start_y = 9;
                      firebase.database().ref('Game '+gl_game+'/Player/player 3').set({
                         x: start_x,
                         y: start_y,
-                        name: name
+                        name: name,
+                        ready: 0
                     }).then(function(){
                           start_x = 9; start_y = 9;
                           firebase.database().ref('Game '+gl_game+'/Player/player 4').set({
                             x: start_x,
                             y: start_y,
-                            name: name
+                            name: name,
+                            ready: 0
                         }).then(function(){
                             set_listen_join();
                             createLobby();
