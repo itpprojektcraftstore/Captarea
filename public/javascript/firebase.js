@@ -16,15 +16,6 @@
       var gl_player_index = 0;
       var gl_game_start = false;
 
-      var gl_p1_ready = false;
-      var gl_p2_ready = false;
-      var gl_p3_ready = false;
-      var gl_p4_ready = false;
-      var gl_p1_cnt = 0;
-      var gl_p2_cnt = 0;
-      var gl_p3_cnt = 0;
-      var gl_p4_cnt = 0;
-
 /*
       document.addEventListener('DOMContentLoaded', function() {
         // // 🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥
