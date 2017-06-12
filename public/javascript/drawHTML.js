@@ -95,7 +95,7 @@ function createLobby() {
                 var p, btn;
                 if(name != '?') {
                     $('#Player'+i).attr('class', 'container border player');
-                    p = $("<p style=\"display:inline;\">"+name+"</p>");
+                    p = $("<p style=\"float:left;\">"+name+"</p>");
                     if (gl_player_index == i) {
                         btn = $("<button id=\"p"+i+"ready\" onclick=\"ready_click("+i+")\" class=\"btn\" style=\"float:right;\">Ready</button>");
                     }
