@@ -10,7 +10,20 @@ function set_listen_ready() {
             if(snapshot_player.val()["player 4"].name != "?") { gl_players++; }
             
             if(snapshot_ready.val().ready == gl_players) {
-                startGame();
+                var count = 3;
+                function anim() {
+                    if (count > 0) {
+                        document.getElementById('countdown').innerHTML=count;
+                        count--;
+                        setTimeout(anim, 1000);
+                    }
+                    else {
+                        document.getElementById('countdown').innerHTML='GO!';
+                        setTimeout(anim, 1000);
+                        startGame();
+                    }
+                }
+                anim();
             }
         });
     });

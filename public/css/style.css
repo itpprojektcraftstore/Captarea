@@ -12,9 +12,21 @@ h1{
     float: left;
 }
 
+#countdown{
+    text-align: center;
+}
+
+#winner{
+    text-align: center;
+}
+
 #board{
     width:320px;
     height:320px;
+}
+
+#lobby{
+    min-height: 340px;
 }
 
 .move_button {
@@ -54,13 +66,27 @@ h1{
 .border{
     border: solid 1px black;
     max-width: 600px;
+    min-height: 36px;
     border-radius: 5px;
     padding-right: 0px;
+    padding-left: 0px;
+    background-color: white;
+
 }
+
+.border2{
+    background-color: #efefef;
+    border-radius: 5px;
+    border: solid 1px black;
+
+}
+
 
 .border p{
     display: inline;
     margin: 8px 0 0 0;
+    padding-left: 5px;
+    padding-right: 5px;
 }
 
 .player{

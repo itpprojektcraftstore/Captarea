@@ -145,29 +145,46 @@ function closeGame() {
         switch(gl_players) {
 
             case 2:
-                if (score1 > score2) { console.log(gl_player_array[0]+" wins"); }
-                else if (score2 > score1) { console.log(gl_player_array[1]+" wins"); }
-                else { console.log("draw"); }
+                if (score1 > score2) { console.log(gl_player_array[0]+" wins"); 
+                document.getElementById('winner').innerHTML=gl_player_array[0]+" wins!"; }
+                else if (score2 > score1) { console.log(gl_player_array[1]+" wins");
+                document.getElementById('winner').innerHTML=gl_player_array[1]+" wins!"; }
+                else { console.log("draw"); 
+                document.getElementById('winner').innerHTML="Draw";}
                 break;
 
             case 3:
-                if (score1 > score2 && score1 > score3) { console.log(gl_player_array[0]+" wins"); }
-                else if (score2 > score1 && score2 > score3) { console.log(gl_player_array[1]+" wins"); }
-                else if (score3 > score1 && score3 > score2) { console.log(gl_player_array[2]+" wins"); }
-                else { console.log("draw"); }
+                if (score1 > score2 && score1 > score3) { console.log(gl_player_array[0]+" wins");
+                document.getElementById('winner').innerHTML=gl_player_array[0]+" wins!"; }
+                else if (score2 > score1 && score2 > score3) { console.log(gl_player_array[1]+" wins");
+                document.getElementById('winner').innerHTML=gl_player_array[1]+" wins!"; }
+                else if (score3 > score1 && score3 > score2) { console.log(gl_player_array[2]+" wins");
+                document.getElementById('winner').innerHTML=gl_player_array[2]+" wins!"; }
+                else { console.log("draw"); 
+                document.getElementById('winner').innerHTML="Draw";}
                 break;
 
             case 4:
-                if (score1 > score2 && score1 > score3 && score1 > score4) { console.log(gl_player_array[0]+" wins"); }
-                else if (score2 > score1 && score2 > score3 && score2 > score4) { console.log(gl_player_array[1]+" wins"); }
-                else if (score3 > score1 && score3 > score2 && score3 > score4) { console.log(gl_player_array[2]+" wins"); }
-                else if (score4 > score1 && score4 > score2 && score4 > score3) { console.log(gl_player_array[3]+" wins"); }
-                else { console.log("draw"); }
+                if (score1 > score2 && score1 > score3 && score1 > score4) { console.log(gl_player_array[0]+" wins");
+                document.getElementById('winner').innerHTML=gl_player_array[0]+" wins!"; }
+                else if (score2 > score1 && score2 > score3 && score2 > score4) { console.log(gl_player_array[1]+" wins");
+                document.getElementById('winner').innerHTML=gl_player_array[1]+" wins!"; }
+                else if (score3 > score1 && score3 > score2 && score3 > score4) { console.log(gl_player_array[2]+" wins");
+                document.getElementById('winner').innerHTML=gl_player_array[2]+" wins!"; }
+                else if (score4 > score1 && score4 > score2 && score4 > score3) { console.log(gl_player_array[3]+" wins");
+                document.getElementById('winner').innerHTML=gl_player_array[3]+" wins!"; }
+                else { console.log("draw");
+                document.getElementById('winner').innerHTML="Draw"; }
                 break;
 
             default:
                 console.log(gl_player_array[0]+" wins");
+                document.getElementById('winner').innerHTML=gl_player_array[0]+" wins!";
         }
+
+        setTimeout(function(){ 
+            listGames(); 
+        }, 3000);
 
         //reset();
         //createLobby();
