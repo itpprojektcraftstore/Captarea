@@ -185,17 +185,14 @@ function listGames(){
 }
 
 function printHighscore(Highscore) {
-    var $div = $("<div id=\"highscore_list\" ></div>");
-    $('#view').append($div);
+    var $div = $("<div id=\"highscore_list\" class=\"border2 center\" ><h3 style=\"text-align:center;\">Highscores</h3></div>");
+    $('#games').append($div);
     var $list = $("<ul><li id=\"p1\"></li><li id=\"p2\"></li><li id=\"p3\"></li><li id=\"p4\"></li><li id=\"p5\"></li></ul>");
     $('#highscore_list').append($list);
 
     for (i = 1; i <= 5; ++i ){
         if(Highscore["Platz "+i].Name != "---") {
-            $("#p"+i).html(i+". "+Highscore["Platz "+i].Name+" ("+Highscore["Platz "+i].Punkte+")");
-        }
-        else {
-            $("#p"+i).html(i+".");
+            $("#p"+i).html(i+". "+Highscore["Platz "+i].Name+" (Score: "+Highscore["Platz "+i].Punkte+")");
         }
     }
 }

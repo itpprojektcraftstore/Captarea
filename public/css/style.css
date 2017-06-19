@@ -2,6 +2,8 @@ h1{
     text-align: center;
     margin:.5em 0 .5em 0;
     cursor: pointer;
+    padding-left: 30px;
+    padding-right: 15px;
 }
 
 .field {
@@ -10,6 +12,15 @@ h1{
     border: 1px solid grey;
     margin: 0px;
     float: left;
+}
+
+#highscore_list{
+    width: 300px;
+    margin-top: 50px;
+}
+
+li{
+    list-style: none;
 }
 
 #countdown{
