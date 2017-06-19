@@ -197,7 +197,7 @@ function reset() {
     score3 = 0;
     score4 = 0;
     
-    var gl_game = 0;
+    //var gl_game = 0;
     var gl_players = 1;
     var gl_player_array = [" ", " ", " ", " "];
     var gl_player_index = 0;
