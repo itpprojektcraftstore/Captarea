@@ -185,7 +185,7 @@ function closeGame() {
         if (gl_player_index == 1) { checkHighscore(); }
 
         setTimeout(function(){
-            reset();
+            //reset();
             listGames(); 
         }, 5000);
     }
