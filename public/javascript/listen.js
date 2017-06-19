@@ -9,7 +9,7 @@ function set_listen_ready() {
             if(snapshot_player.val()["player 3"].name != "?") { gl_players++; }
             if(snapshot_player.val()["player 4"].name != "?") { gl_players++; }
             
-            if(snapshot_ready.val().ready == gl_players) {
+            if(snapshot_ready.val().ready == gl_players && gl_game_start == false) {
                 var count = 3;
                 function anim() {
                     if (count > 0) {
