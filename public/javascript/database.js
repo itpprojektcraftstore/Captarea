@@ -102,7 +102,7 @@ function dec_ready() {
 
 function startTimer() {
     // Set the date we're counting down to
-    var countDownDate = new Date().getTime()+1000*26;
+    var countDownDate = new Date().getTime()+1000*32;
 
     // Update the count down every 1 second
     var intervall = setInterval(function() {
