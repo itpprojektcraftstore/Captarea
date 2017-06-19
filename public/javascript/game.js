@@ -185,24 +185,9 @@ function closeGame() {
         if (gl_player_index == 1) { checkHighscore(); }
 
         setTimeout(function(){
-            //reset();
             listGames(); 
         }, 5000);
     }
-}
-
-function reset() {
-    score1 = 0;
-    score2 = 0;
-    score3 = 0;
-    score4 = 0;
-    
-    //var gl_game = 0;
-    var gl_players = 1;
-    var gl_player_array = [" ", " ", " ", " "];
-    var gl_player_index = 0;
-    var gl_game_start = false;
-    var gl_leave = false;
 }
 
 function checkHighscore() {
