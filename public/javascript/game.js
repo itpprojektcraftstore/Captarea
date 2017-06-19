@@ -187,7 +187,7 @@ function closeGame() {
         setTimeout(function(){
             reset();
             listGames(); 
-        }, 3000);
+        }, 5000);
     }
 }
 
