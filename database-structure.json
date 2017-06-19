@@ -3,23 +3,28 @@
   {
     "Platz 1" : 
     {
-      "Name" : "player1"
+      "Name" : "---",
+      "Punkte" : 0
     },
     "Platz 2" : 
     {
-      "Name" : "player1"
+      "Name" : "---",
+      "Punkte" : 0
     },
     "Platz 3" : 
     {
-      "Name" : "player1"
+      "Name" : "---",
+      "Punkte" : 0
     },
     "Platz 4" : 
     {
-      "Name" : "player1"
+      "Name" : "---",
+      "Punkte" : 0
     },
     "Platz 5" : 
     {
-      "Name" : "player1"
+      "Name" : "---",
+      "Punkte" : 0
     }
   },
   "Available" :

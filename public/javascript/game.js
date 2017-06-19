@@ -11,7 +11,7 @@ function createGame() {
 
             firebase.database().ref('Game '+gl_game+'/Running').set({
                 running: 0
-            })
+            });
 
             changeAvailable(1);
 
@@ -182,12 +182,12 @@ function closeGame() {
                 document.getElementById('winner').innerHTML=gl_player_array[0]+" wins!";
         }
 
-        setTimeout(function(){ 
+        if (gl_player_index == 1) { checkHighscore(); }
+
+        setTimeout(function(){
+            reset();
             listGames(); 
         }, 3000);
-
-        //reset();
-        //createLobby();
     }
 }
 
@@ -196,8 +196,179 @@ function reset() {
     score2 = 0;
     score3 = 0;
     score4 = 0;
+    
     var gl_game = 0;
     var gl_players = 1;
     var gl_player_array = [" ", " ", " ", " "];
     var gl_player_index = 0;
+    var gl_game_start = false;
+    var gl_leave = false;
+}
+
+function checkHighscore() {
+    firebase.database().ref("Highscore").once("value").then(function(snapshot) {
+        var hs1 = snapshot.val()["Platz 1"].Punkte;
+        var hs2 = snapshot.val()["Platz 2"].Punkte;
+        var hs3 = snapshot.val()["Platz 3"].Punkte;
+        var hs4 = snapshot.val()["Platz 4"].Punkte;
+        var hs5 = snapshot.val()["Platz 5"].Punkte;
+
+        var scores = [score1, score2, score3, score4];
+
+        var player_local = [ gl_player_array[0],
+                             gl_player_array[1],
+                             gl_player_array[2],
+                             gl_player_array[3]];
+
+        var player = [  snapshot.val()["Platz 1"].Name,
+                        snapshot.val()["Platz 2"].Name,
+                        snapshot.val()["Platz 3"].Name,
+                        snapshot.val()["Platz 4"].Name,
+                        snapshot.val()["Platz 5"].Name];
+        
+        // Bubble Sort
+        var swapped;
+        do {
+            swapped = false;
+            for (var i=0; i < scores.length-1; ++i) {
+                if (scores[i] < scores[i+1]) {
+                    var tmp = scores[i];
+                    scores[i] = scores[i+1];
+                    scores[i+1] = tmp;
+
+                    tmp = player_local[i];
+                    player_local[i] = player_local[i+1];
+                    player_local[i+1] = tmp;
+
+                    swapped = true;
+                }
+            }
+        } while (swapped);
+
+        // check scores
+        if (gl_players >= 1) {
+            if(scores[0] >= hs1) {
+                hs5 = hs4;
+                hs4 = hs3;
+                hs3 = hs2;
+                hs2 = hs1;
+                hs1 = scores[0];
+                player[4] = player[3];
+                player[3] = player[2];
+                player[2] = player[1];
+                player[1] = player[0];
+                player[0] = player_local[0];
+            }
+            else if(scores[0] >=hs2) {
+                hs5 = hs4;
+                hs4 = hs3;
+                hs3 = hs2;
+                hs2 = scores[0];
+                player[4] = player[3];
+                player[3] = player[2];
+                player[2] = player[1];
+                player[1] = player_local[0];
+            }
+            else if(scores[0] >=hs3) {
+                hs5 = hs4;
+                hs4 = hs3;
+                hs3 = scores[0];
+                player[4] = player[3];
+                player[3] = player[2];
+                player[2] = player_local[0];
+            }
+            else if(scores[0] >=hs4) {
+                hs5 = hs4;
+                hs4 = scores[0];
+                player[4] = player[3];
+                player[3] = player_local[0];
+            }
+            else if(scores[0] >=hs5) {
+                hs5 = scores[0];
+                player[4] = player_local[0];
+            }
+        }
+
+        if (gl_players >= 2) {
+            if(scores[1] >=hs2) {
+                hs5 = hs4;
+                hs4 = hs3;
+                hs3 = hs2;
+                hs2 = scores[1];
+                player[4] = player[3];
+                player[3] = player[2];
+                player[2] = player[1];
+                player[1] = player_local[1];
+            }
+            else if(scores[1] >=hs3) {
+                hs5 = hs4;
+                hs4 = hs3;
+                hs3 = scores[1];
+                player[4] = player[3];
+                player[3] = player[2];
+                player[2] = player_local[1];
+            }
+            else if(scores[1] >=hs4) {
+                hs5 = hs4;
+                hs4 = scores[1];
+                player[4] = player[3];
+                player[3] = player_local[1];
+            }
+            else if(scores[1] >=hs5) {
+                hs5 = scores[1];
+                player[4] = player_local[1];
+            }
+        }
+
+        if (gl_players >= 3) {
+            if(scores[2] >=hs3) {
+                hs5 = hs4;
+                hs4 = hs3;
+                hs3 = scores[2];
+                player[4] = player[3];
+                player[3] = player[2];
+                player[2] = player_local[2];
+            }
+            else if(scores[2] >=hs4) {
+                hs5 = hs4;
+                hs4 = scores[2];
+                player[4] = player[3];
+                player[3] = player_local[2];
+            }
+            else if(scores[2] >=hs5) {
+                hs5 = scores[2];
+                player[4] = player_local[2];
+            }
+        }
+
+        if (gl_players >= 4) {
+            if(scores[3] >=hs4) {
+                hs5 = hs4;
+                hs4 = scores[3];
+                player[4] = player[3];
+                player[3] = player_local[3];                
+            }
+            else if(scores[3] >=hs5) {
+                hs5 = scores[3];
+                player[4] = player_local[3];
+            }
+        }
+
+        // set scores
+        if (hs1 != snapshot.val()["Platz 1"].Punkte) {
+            setHighscore(1, player[0], hs1);
+        }
+        if (hs2 != snapshot.val()["Platz 2"].Punkte) {
+            setHighscore(2, player[1], hs2);
+        }
+        if (hs3 != snapshot.val()["Platz 3"].Punkte) {
+            setHighscore(3, player[2], hs3);
+        }
+        if (hs4 != snapshot.val()["Platz 4"].Punkte) {
+            setHighscore(4, player[3], hs4);
+        }
+        if (hs5 != snapshot.val()["Platz 5"].Punkte) {
+            setHighscore(5, player[4], hs5);
+        }
+    });
 }

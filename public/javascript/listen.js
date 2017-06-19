@@ -13,14 +13,18 @@ function set_listen_ready() {
                 var count = 3;
                 function anim() {
                     if (count > 0) {
-                        document.getElementById('countdown').innerHTML=count;
-                        count--;
-                        setTimeout(anim, 1000);
+                        if (document.getElementById('countdown') !== null) {
+                            document.getElementById('countdown').innerHTML=count;
+                            count--;
+                            setTimeout(anim, 1000);
+                        }
                     }
                     else {
-                        document.getElementById('countdown').innerHTML='GO!';
-                        setTimeout(anim, 1000);
-                        startGame();
+                        if (document.getElementById('countdown') !== null) {
+                            document.getElementById('countdown').innerHTML='GO!';
+                            setTimeout(anim, 1000);
+                            startGame();
+                        }
                     }
                 }
                 anim();

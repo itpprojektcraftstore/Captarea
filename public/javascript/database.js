@@ -102,7 +102,7 @@ function dec_ready() {
 
 function startTimer() {
     // Set the date we're counting down to
-    var countDownDate = new Date().getTime()+1000*62;
+    var countDownDate = new Date().getTime()+1000*26;
 
     // Update the count down every 1 second
     var intervall = setInterval(function() {
@@ -131,5 +131,12 @@ function startTimer() {
 function setPlayerName(i, name) {
     firebase.database().ref('Game '+gl_game+'/Player/player '+i).update({
         name: name
+    });
+}
+
+function setHighscore(i, name, points) {
+    firebase.database().ref('Highscore/Platz '+i).update({
+        Name: name,
+        Punkte: points
     });
 }

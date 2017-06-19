@@ -176,6 +176,26 @@ function listGames(){
                     }
                 }
             });
+            if (cnt_game == 1) { 
+                $('#subGames').html("<span style=\"padding-left:5px;\">no games available</span>");
+            }
+            printHighscore(snapshot.val().Highscore);
         });
     });
+}
+
+function printHighscore(Highscore) {
+    var $div = $("<div id=\"highscore_list\" ></div>");
+    $('#view').append($div);
+    var $list = $("<ul><li id=\"p1\"></li><li id=\"p2\"></li><li id=\"p3\"></li><li id=\"p4\"></li><li id=\"p5\"></li></ul>");
+    $('#highscore_list').append($list);
+
+    for (i = 1; i <= 5; ++i ){
+        if(Highscore["Platz "+i].Name != "---") {
+            $("#p"+i).html(i+". "+Highscore["Platz "+i].Name+" ("+Highscore["Platz "+i].Punkte+")");
+        }
+        else {
+            $("#p"+i).html(i+".");
+        }
+    }
 }
